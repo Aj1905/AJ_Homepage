@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AJ - 個人事業主のホームページ">
+    <title>AJ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Meiryo', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s ease-out',
+                        'fade-in': 'fadeIn 0.6s ease-out',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out;
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-800 antialiased">
+    <!-- ナビゲーション -->
+    <nav class="fixed top-0 w-full bg-white shadow-md z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="text-2xl font-bold text-blue-600">AJ</div>
+                <ul class="hidden md:flex space-x-8">
+                    <li><a href="#home" class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200">ホーム</a></li>
+                    <li><a href="#services" class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200">サービス</a></li>
+                    <li><a href="#about" class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200">事業者情報</a></li>
+                    <li><a href="#contact" class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200">お問い合わせ</a></li>
+                </ul>
+                <button id="hamburger" class="md:hidden flex flex-col space-y-1.5 cursor-pointer">
+                    <span class="block w-6 h-0.5 bg-gray-700 transition-all duration-300"></span>
+                    <span class="block w-6 h-0.5 bg-gray-700 transition-all duration-300"></span>
+                    <span class="block w-6 h-0.5 bg-gray-700 transition-all duration-300"></span>
+                </button>
+            </div>
+        </div>
+        <!-- モバイルメニュー -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-t">
+            <ul class="flex flex-col space-y-4 px-4 py-4">
+                <li><a href="#home" class="block text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200">ホーム</a></li>
+                <li><a href="#services" class="block text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200">サービス</a></li>
+                <li><a href="#about" class="block text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200">事業者情報</a></li>
+                <li><a href="#contact" class="block text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200">お問い合わせ</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ヒーローセクション -->
+    <section id="home" class="bg-gradient-to-br from-blue-600 to-blue-800 text-white pt-32 pb-20 px-4 text-center">
+        <div class="max-w-4xl mx-auto animate-fade-in-up">
+            <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold mb-4">AJ</h1>
+            <p class="text-xl md:text-2xl mb-8 opacity-90">あなたのビジネスをサポートします</p>
+            <a href="#contact" class="inline-block bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
+                お問い合わせ
+            </a>
+        </div>
+    </section>
+
+    <!-- サービスセクション -->
+    <section id="services" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">
+                サービス
+                <div class="w-16 h-1 bg-blue-600 mx-auto mt-4 rounded"></div>
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-center">
+                    <div class="text-5xl mb-4">💼</div>
+                    <h3 class="text-2xl font-semibold mb-4 text-gray-800">サービス1</h3>
+                    <p class="text-gray-600 leading-relaxed">サービス内容の説明をここに記載します。お客様のニーズに合わせたソリューションを提供いたします。</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-center">
+                    <div class="text-5xl mb-4">🎯</div>
+                    <h3 class="text-2xl font-semibold mb-4 text-gray-800">サービス2</h3>
+                    <p class="text-gray-600 leading-relaxed">サービス内容の説明をここに記載します。高品質なサービスでお客様の成功をサポートします。</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-center">
+                    <div class="text-5xl mb-4">🚀</div>
+                    <h3 class="text-2xl font-semibold mb-4 text-gray-800">サービス3</h3>
+                    <p class="text-gray-600 leading-relaxed">サービス内容の説明をここに記載します。最新の技術とノウハウで最適なソリューションを提供します。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 事業者情報セクション -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">
+                事業者情報
+                <div class="w-16 h-1 bg-blue-600 mx-auto mt-4 rounded"></div>
+            </h2>
+            <div class="space-y-6">
+                <h3 class="text-3xl font-semibold text-blue-600 mb-4">屋号：AJ</h3>
+                <p class="text-lg text-gray-600 leading-relaxed">
+                    個人事業主として、お客様のビジネスをサポートするサービスを提供しております。
+                </p>
+                <p class="text-lg text-gray-600 leading-relaxed">
+                    経験と専門知識を活かし、お客様の成功を第一に考えたサービスを心がけております。
+                </p>
+                <div class="mt-8 p-8 bg-gray-50 rounded-lg space-y-4">
+                    <div class="text-lg">
+                        <strong class="text-gray-800">屋号：</strong>
+                        <span class="text-gray-600">AJ</span>
+                    </div>
+                    <div class="text-lg">
+                        <strong class="text-gray-800">事業内容：</strong>
+                        <span class="text-gray-600">ご記入ください</span>
+                    </div>
+                    <div class="text-lg">
+                        <strong class="text-gray-800">所在地：</strong>
+                        <span class="text-gray-600">ご記入ください</span>
+                    </div>
+                    <div class="text-lg">
+                        <strong class="text-gray-800">お問い合わせ：</strong>
+                        <span class="text-gray-600">TEL: 080-5614-7439</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- お問い合わせセクション -->
+    <section id="contact" class="py-20 bg-gray-50">
+        <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">
+                お問い合わせ
+                <div class="w-16 h-1 bg-blue-600 mx-auto mt-4 rounded"></div>
+            </h2>
+            <form id="contactForm" class="bg-white p-8 rounded-xl shadow-md space-y-6">
+                <div>
+                    <label for="name" class="block text-sm font-semibold text-gray-700 mb-2">
+                        お名前 <span class="text-red-500">*</span>
+                    </label>
+                    <input type="text" id="name" name="name" required
+                        class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-blue-600 focus:outline-none transition-colors duration-200">
+                </div>
+                <div>
+                    <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">
+                        メールアドレス <span class="text-red-500">*</span>
+                    </label>
+                    <input type="email" id="email" name="email" required
+                        class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-blue-600 focus:outline-none transition-colors duration-200">
+                </div>
+                <div>
+                    <label for="subject" class="block text-sm font-semibold text-gray-700 mb-2">
+                        件名
+                    </label>
+                    <input type="text" id="subject" name="subject"
+                        class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-blue-600 focus:outline-none transition-colors duration-200">
+                </div>
+                <div>
+                    <label for="message" class="block text-sm font-semibold text-gray-700 mb-2">
+                        お問い合わせ内容 <span class="text-red-500">*</span>
+                    </label>
+                    <textarea id="message" name="message" rows="5" required
+                        class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-blue-600 focus:outline-none transition-colors duration-200 resize-vertical"></textarea>
+                </div>
+                <button type="submit"
+                    class="w-full bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 hover:shadow-lg transition-all duration-300">
+                    送信
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p>&copy; 2024 AJ. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
