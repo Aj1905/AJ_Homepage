@@ -1,71 +1,169 @@
 # AJ ホームページ
 
-個人事業主「AJ」の事業用ホームページの雛形です。
+個人事業主「AJ」の事業用ホームページです。
 
-## ファイル構成
+## 📋 プロジェクト概要
 
-- `index.html` - メインのHTMLファイル（Tailwind CSS使用）
-- `script.js` - JavaScriptファイル
+このプロジェクトは、個人事業主「AJ」の公式ホームページです。モダンなデザインとレスポンシブ対応で、様々なデバイスで快適に閲覧できます。
 
-## 使用技術
+## 🛠️ 使用技術
 
-- **Tailwind CSS** - CDN経由で使用（https://cdn.tailwindcss.com）
-- バニラJavaScript
+- **HTML5** - セマンティックなマークアップ
+- **Tailwind CSS** - ユーティリティファーストのCSSフレームワーク（CDN経由）
+- **JavaScript (Vanilla)** - インタラクティブな機能の実装
+- **Cloudflare Pages** - ホスティング・CDN配信
 
-## 機能
+## 📁 ファイル構成
 
-- レスポンシブデザイン（スマートフォン、タブレット、PC対応）
-- スムーススクロール
-- ハンバーガーメニュー（モバイル対応）
-- お問い合わせフォーム
-- モダンなUIデザイン
+```
+AJHompage/
+├── index.html      # メインのHTMLファイル
+├── script.js       # JavaScriptファイル
+├── styles.css      # カスタムスタイル（現在はTailwind CSS使用のため未使用）
+└── README.md       # このファイル
+```
 
-## カスタマイズ方法
+## 🚀 セットアップ
 
-### 1. 事業者情報の更新
+### ローカルでの確認
 
-`index.html`の事業者情報セクション（`#about`）を編集してください：
+1. リポジトリをクローン
+```bash
+git clone https://github.com/Aj1905/AJ_Homepage.git
+cd AJ_Homepage
+```
+
+2. ブラウザで`index.html`を開く
+   - または、ローカルサーバーを起動：
+   ```bash
+   # Python 3の場合
+   python -m http.server 8000
+   
+   # Node.jsの場合（http-serverをインストール後）
+   npx http-server
+   ```
+
+3. ブラウザで `http://localhost:8000` にアクセス
+
+## ☁️ Cloudflare Pages へのデプロイ
+
+Cloudflare Pagesを使用することで、高速なCDN配信と自動デプロイが可能です。
+
+### デプロイ手順
+
+1. **Cloudflareアカウントの作成**
+   - [Cloudflare](https://www.cloudflare.com/)にアクセスしてアカウントを作成
+
+2. **Cloudflare Pagesでプロジェクトを作成**
+   - Cloudflare Dashboard > Pages > Create a project
+   - "Connect to Git"を選択
+   - GitHubアカウントを連携
+   - リポジトリ `Aj1905/AJ_Homepage` を選択
+
+3. **ビルド設定**
+   - **Framework preset**: None (静的サイト)
+   - **Build command**: （不要）
+   - **Build output directory**: `/` (ルートディレクトリ)
+   - **Root directory**: `/` (ルートディレクトリ)
+
+4. **デプロイ**
+   - "Save and Deploy"をクリック
+   - 数分でデプロイが完了し、自動的にURLが発行されます
+
+### カスタムドメインの設定（オプション）
+
+1. Cloudflare Pagesのプロジェクト設定 > Custom domains
+2. ドメインを追加
+3. DNS設定をCloudflareに変更（必要に応じて）
+
+## ✏️ カスタマイズ方法
+
+### 事業者情報の更新
+
+`index.html`の事業者情報セクション（`#about`）を編集：
 
 ```html
-<div class="detail-item">
-    <strong>事業内容：</strong>ご記入ください
+<div class="text-lg">
+    <strong class="text-gray-800">事業内容：</strong>
+    <span class="text-gray-600">ご記入ください</span>
 </div>
-<div class="detail-item">
-    <strong>所在地：</strong>ご記入ください
-</div>
-<div class="detail-item">
-    <strong>お問い合わせ：</strong>ご記入ください
+<div class="text-lg">
+    <strong class="text-gray-800">所在地：</strong>
+    <span class="text-gray-600">ご記入ください</span>
 </div>
 ```
 
-### 2. サービスの編集
+### サービスの編集
 
-`index.html`のサービスセクション（`#services`）のサービスカードを編集してください。
+`index.html`のサービスセクション（`#services`）のサービスカードを編集：
 
-### 3. 色の変更
+```html
+<div class="bg-white p-8 rounded-xl shadow-md...">
+    <div class="text-5xl mb-4">💼</div>
+    <h3 class="text-2xl font-semibold mb-4">サービス1</h3>
+    <p class="text-gray-600 leading-relaxed">サービス内容...</p>
+</div>
+```
 
-Tailwind CSSのクラスを直接変更するか、`index.html`の`tailwind.config`でテーマをカスタマイズできます。
+### 色の変更
 
-例：メインカラーを変更する場合
-- HTML内の`bg-blue-600`、`text-blue-600`などのクラスを別の色に変更
-- または`tailwind.config`でカスタムカラーを定義
+Tailwind CSSのユーティリティクラスを変更：
 
-### 4. お問い合わせフォームの実装
+- メインカラー: `bg-blue-600` → `bg-green-600` など
+- テキストカラー: `text-blue-600` → `text-purple-600` など
+- カスタムカラーを追加する場合は、`tailwind.config`を編集
+
+### お問い合わせフォームの実装
 
 `script.js`の`contactForm`イベントリスナー内で、実際の送信処理を実装してください。
 
-一般的な実装方法：
-- メール送信API（例: EmailJS、SendGrid）
+**推奨サービス：**
+- [Formspree](https://formspree.io/) - 簡単なフォーム送信サービス
+- [EmailJS](https://www.emailjs.com/) - メール送信API
+- [Netlify Forms](https://docs.netlify.com/forms/setup/) - Netlifyを使用している場合
 - バックエンドAPIへの送信
-- フォーム送信サービス（例: Formspree、Netlify Forms）
 
-## 使用方法
+## 🔄 更新・デプロイの流れ
 
-1. ファイルをWebサーバーにアップロード
-2. ブラウザで`index.html`を開く
-3. 必要に応じて内容をカスタマイズ
+1. ローカルで変更を加える
+2. 変更をコミット
+```bash
+git add .
+git commit -m "変更内容の説明"
+git push
+```
+3. Cloudflare Pagesが自動的にデプロイを開始（数分で完了）
 
-## ライセンス
+## 📱 機能
 
-このテンプレートは自由に使用・改変できます。
+- ✅ レスポンシブデザイン（スマートフォン・タブレット・PC対応）
+- ✅ スムーススクロール
+- ✅ ハンバーガーメニュー（モバイル対応）
+- ✅ お問い合わせフォーム
+- ✅ スクロールアニメーション
+- ✅ 高速なCDN配信（Cloudflare）
+
+## 🌐 セクション構成
+
+1. **ヒーローセクション** - トップのメインビジュアル
+2. **サービス** - 提供サービスの紹介
+3. **事業者情報** - 屋号「AJ」と事業者情報
+4. **お問い合わせ** - お問い合わせフォーム
+
+## 📝 ライセンス
+
+このプロジェクトは個人事業主「AJ」の公式ホームページです。
+
+## 🔗 リンク
+
+- GitHub: https://github.com/Aj1905/AJ_Homepage
+- Cloudflare Pages: （デプロイ後にURLが発行されます）
+
+## 📞 お問い合わせ
+
+- TEL: 080-5614-7439
+
+---
+
+**更新日**: 2024年
 
