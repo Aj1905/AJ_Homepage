@@ -62,13 +62,36 @@ Cloudflare Pagesを使用することで、高速なCDN配信と自動デプロ�
 
 3. **ビルド設定**
    - **Framework preset**: None (静的サイト)
-   - **Build command**: （不要）
-   - **Build output directory**: `/` (ルートディレクトリ)
-   - **Root directory**: `/` (ルートディレクトリ)
+   - **Build command**: （空欄にする、または削除）
+   - **Build output directory**: `.` または `/` (ルートディレクトリ)
+   - **Root directory**: `.` または `/` (ルートディレクトリ)
+
+   ⚠️ **重要**: ビルドコマンドは**空欄**にしてください。`npx wrangler deploy`などのコマンドは不要です。
 
 4. **デプロイ**
    - "Save and Deploy"をクリック
    - 数分でデプロイが完了し、自動的にURLが発行されます
+
+### トラブルシューティング
+
+**エラー: "Missing entry-point to Worker script" が表示される場合**
+
+このエラーは、Cloudflare Pagesの設定でビルドコマンドが設定されている場合に発生します。以下の手順で修正してください：
+
+1. Cloudflare Dashboardにログイン
+2. **Pages** > プロジェクト名を選択
+3. **Settings** > **Builds & deployments** を開く
+4. **Build command** フィールドを**完全に空欄**にする（何も入力しない）
+5. **Save** をクリック
+6. **Deployments**タブに戻り、**Retry deployment**をクリック
+
+**正しい設定例：**
+- Framework preset: `None`
+- Build command: **（空欄）**
+- Build output directory: `.` または `/`
+- Root directory: `.` または `/`
+
+⚠️ **注意**: 静的サイトの場合、ビルドコマンドは不要です。`npx wrangler deploy`などのコマンドは削除してください。
 
 ### カスタムドメインの設定（オプション）
 
