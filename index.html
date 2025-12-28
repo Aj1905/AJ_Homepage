@@ -48,15 +48,16 @@
     </style>
 </head>
 <body class="font-sans text-gray-800 antialiased">
-    <!-- ナビゲーション -->
-    <nav class="fixed top-0 w-full bg-white shadow-md z-50 transition-all duration-300">
+    <!-- header -->
+    <header class="fixed top-0 w-full bg-white shadow-md z-50 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <div class="text-2xl font-bold text-blue-600">AJ</div>
                 <ul class="hidden md:flex space-x-8">
-                    <li><a href="#home" class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200">ホーム</a></li>
-                    <li><a href="#services" class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200">サービス</a></li>
-                    <li><a href="#about" class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200">事業者情報</a></li>
+                    <li><a href="#mv" class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200">ホーム</a></li>
+                    <li><a href="#services" class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200">事業内容</a></li>
+                    <li><a href="#past-work" class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200">過去業務</a></li>
+                    <li><a href="#founder" class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200">創業者</a></li>
                     <li><a href="#contact" class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200">お問い合わせ</a></li>
                 </ul>
                 <button id="hamburger" class="md:hidden flex flex-col space-y-1.5 cursor-pointer">
@@ -69,16 +70,17 @@
         <!-- モバイルメニュー -->
         <div id="mobileMenu" class="hidden md:hidden bg-white border-t">
             <ul class="flex flex-col space-y-4 px-4 py-4">
-                <li><a href="#home" class="block text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200">ホーム</a></li>
-                <li><a href="#services" class="block text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200">サービス</a></li>
-                <li><a href="#about" class="block text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200">事業者情報</a></li>
+                <li><a href="#mv" class="block text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200">ホーム</a></li>
+                <li><a href="#services" class="block text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200">事業内容</a></li>
+                <li><a href="#past-work" class="block text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200">過去業務</a></li>
+                <li><a href="#founder" class="block text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200">創業者</a></li>
                 <li><a href="#contact" class="block text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200">お問い合わせ</a></li>
             </ul>
         </div>
-    </nav>
+    </header>
 
-    <!-- ヒーローセクション -->
-    <section id="home" class="bg-gradient-to-br from-blue-600 to-blue-800 text-white pt-32 pb-20 px-4 text-center">
+    <!-- MV(main visual)セクション -->
+    <section id="mv" class="bg-gradient-to-br from-blue-600 to-blue-800 text-white pt-32 pb-20 px-4 text-center">
         <div class="max-w-4xl mx-auto animate-fade-in-up">
             <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold mb-4">AJ</h1>
             <p class="text-xl md:text-2xl mb-8 opacity-90">あなたのビジネスをサポートします</p>
@@ -88,11 +90,11 @@
         </div>
     </section>
 
-    <!-- サービスセクション -->
+    <!-- 事業内容セクション -->
     <section id="services" class="py-20 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">
-                サービス
+                事業内容
                 <div class="w-16 h-1 bg-blue-600 mx-auto mt-4 rounded"></div>
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -115,11 +117,35 @@
         </div>
     </section>
 
-    <!-- 事業者情報セクション -->
-    <section id="about" class="py-20 bg-white">
+    <!-- 過去業務セクション -->
+    <section id="past-work" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">
+                過去業務
+                <div class="w-16 h-1 bg-blue-600 mx-auto mt-4 rounded"></div>
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-gray-50 p-8 rounded-xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                    <h3 class="text-2xl font-semibold mb-4 text-gray-800">業務実績1</h3>
+                    <p class="text-gray-600 leading-relaxed">過去の業務実績の説明をここに記載します。</p>
+                </div>
+                <div class="bg-gray-50 p-8 rounded-xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                    <h3 class="text-2xl font-semibold mb-4 text-gray-800">業務実績2</h3>
+                    <p class="text-gray-600 leading-relaxed">過去の業務実績の説明をここに記載します。</p>
+                </div>
+                <div class="bg-gray-50 p-8 rounded-xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                    <h3 class="text-2xl font-semibold mb-4 text-gray-800">業務実績3</h3>
+                    <p class="text-gray-600 leading-relaxed">過去の業務実績の説明をここに記載します。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 創業者セクション -->
+    <section id="founder" class="py-20 bg-gray-50">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">
-                事業者情報
+                創業者
                 <div class="w-16 h-1 bg-blue-600 mx-auto mt-4 rounded"></div>
             </h2>
             <div class="space-y-6">
@@ -130,7 +156,7 @@
                 <p class="text-lg text-gray-600 leading-relaxed">
                     経験と専門知識を活かし、お客様の成功を第一に考えたサービスを心がけております。
                 </p>
-                <div class="mt-8 p-8 bg-gray-50 rounded-lg space-y-4">
+                <div class="mt-8 p-8 bg-white rounded-lg space-y-4">
                     <div class="text-lg">
                         <strong class="text-gray-800">屋号：</strong>
                         <span class="text-gray-600">AJ</span>
@@ -153,7 +179,7 @@
     </section>
 
     <!-- お問い合わせセクション -->
-    <section id="contact" class="py-20 bg-gray-50">
+    <section id="contact" class="py-20 bg-white">
         <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">
                 お問い合わせ
@@ -196,7 +222,7 @@
         </div>
     </section>
 
-    <!-- フッター -->
+    <!-- footer -->
     <footer class="bg-gray-800 text-white py-8">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <p>&copy; 2024 AJ. All rights reserved.</p>
