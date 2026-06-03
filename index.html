@@ -3,9 +3,232 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="AJ - 個人事業主のホームページ">
+
+    <!--
+        ============================================================
+        AIO/SEO 設定の集中管理ポイント — 本番リリース時に必ず確認
+        ============================================================
+        以下の値は本番ドメイン・実コンテンツ確定後に差し替えてください：
+        - SITE_URL        : https://aj-homepage.vercel.app/  (←本番ドメインに置換)
+        - OGP画像         : /ogp.png  (1200x630推奨、未設置のためURLは仮)
+        - 創業年月日       : 「foundingDate」(JSON-LD内、現状TODO)
+        - 事業エリア       : 「areaServed」(JSON-LD内、現状TODO)
+        - 過去業務の実コンテンツ
+        - 創業者情報「事業内容」欄の実テキスト
+        - FAQ各項目の本文
+        差し替え後、Google Rich Results Test / Schema Markup Validator で検証推奨。
+        ============================================================
+    -->
+
+    <!-- 基本メタ -->
+    <title>AJ｜AIエージェント基盤の自社開発・受託開発・SES｜東京・新宿区</title>
+    <meta name="description" content="AJは東京都新宿区を拠点とする個人事業主。AIエージェント統合基盤（エージェントゲートウェイ）の自社開発、Webアプリの受託開発、エンジニアリングSESを提供。創業者は秋田隼。お問い合わせはTEL 080-5614-7439 まで。">
+    <meta name="keywords" content="AJ, 秋田隼, AIエージェント, エージェントゲートウェイ, 受託開発, SES, 個人事業主, 東京, 新宿区, AI開発, Web開発">
+    <meta name="author" content="秋田 隼">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="googlebot" content="index, follow">
+    <link rel="canonical" href="https://aj-homepage.vercel.app/">
+    <meta name="theme-color" content="#2563eb">
+
+    <!-- Open Graph (Facebook / LinkedIn / 多くのLLM参照系) -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="AJ">
+    <meta property="og:title" content="AJ｜AIエージェント基盤の自社開発・受託開発・SES">
+    <meta property="og:description" content="AIの次の時代を。エージェントゲートウェイの自社開発、Webアプリ受託開発、SESを東京・新宿区から提供する個人事業主AJ。">
+    <meta property="og:url" content="https://aj-homepage.vercel.app/">
+    <meta property="og:image" content="https://aj-homepage.vercel.app/ogp.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="ja_JP">
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AJ｜AIエージェント基盤の自社開発・受託開発・SES">
+    <meta name="twitter:description" content="AIの次の時代を。エージェントゲートウェイの自社開発、Webアプリ受託開発、SESを提供する個人事業主AJ。">
+    <meta name="twitter:image" content="https://aj-homepage.vercel.app/ogp.png">
+
+    <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23111827'/%3E%3Ctext x='50' y='50' font-family='-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif' font-size='44' font-weight='700' fill='%23ffffff' text-anchor='middle' dominant-baseline='central'%3EAJ%3C/text%3E%3C/svg%3E">
-    <title>AJ</title>
+
+    <!-- AI/LLM向けメタヒント -->
+    <link rel="alternate" type="text/markdown" title="AJ - LLM向け概要 (llms.txt)" href="/llms.txt">
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+
+    <!-- JSON-LD: Organization / LocalBusiness -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "@id": "https://aj-homepage.vercel.app/#organization",
+      "name": "AJ",
+      "alternateName": "AJ（屋号）",
+      "url": "https://aj-homepage.vercel.app/",
+      "logo": "https://aj-homepage.vercel.app/ogp.png",
+      "image": "https://aj-homepage.vercel.app/ogp.png",
+      "description": "AIエージェント統合基盤（エージェントゲートウェイ）の自社開発、Webアプリの受託開発、エンジニアリングSESを提供する個人事業主。",
+      "slogan": "AIの次の時代を",
+      "telephone": "+81-80-5614-7439",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "矢来町52-5 Herme神楽坂205号室",
+        "addressLocality": "新宿区",
+        "addressRegion": "東京都",
+        "postalCode": "",
+        "addressCountry": "JP"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Japan"
+      },
+      "founder": {
+        "@id": "https://aj-homepage.vercel.app/#founder-person"
+      },
+      "knowsAbout": [
+        "AIエージェント開発",
+        "エージェントゲートウェイ",
+        "Webアプリケーション開発",
+        "システム開発",
+        "SES（システムエンジニアリングサービス）"
+      ],
+      "makesOffer": [
+        { "@id": "https://aj-homepage.vercel.app/#service-inhouse" },
+        { "@id": "https://aj-homepage.vercel.app/#service-contract" },
+        { "@id": "https://aj-homepage.vercel.app/#service-ses" }
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+81-80-5614-7439",
+        "contactType": "customer service",
+        "areaServed": "JP",
+        "availableLanguage": ["Japanese"]
+      }
+    }
+    </script>
+
+    <!-- JSON-LD: Person (創業者) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "@id": "https://aj-homepage.vercel.app/#founder-person",
+      "name": "秋田 隼",
+      "givenName": "隼",
+      "familyName": "秋田",
+      "jobTitle": "個人事業主 / 創業者",
+      "worksFor": {
+        "@id": "https://aj-homepage.vercel.app/#organization"
+      },
+      "url": "https://aj-homepage.vercel.app/#founder",
+      "knowsAbout": [
+        "AIエージェント開発",
+        "Webアプリケーション開発",
+        "システム設計"
+      ]
+    }
+    </script>
+
+    <!-- JSON-LD: Service (3事業) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Service",
+          "@id": "https://aj-homepage.vercel.app/#service-inhouse",
+          "name": "自社開発（エージェントゲートウェイ）",
+          "serviceType": "AIエージェント統合基盤の開発",
+          "provider": { "@id": "https://aj-homepage.vercel.app/#organization" },
+          "description": "複数のAIエージェントを統合・制御し、AI時代の業務基盤となるプロダクト『エージェントゲートウェイ』を開発中。",
+          "areaServed": "JP"
+        },
+        {
+          "@type": "Service",
+          "@id": "https://aj-homepage.vercel.app/#service-contract",
+          "name": "受託開発",
+          "serviceType": "Webアプリ・システム開発",
+          "provider": { "@id": "https://aj-homepage.vercel.app/#organization" },
+          "description": "お客様の要望に基づき、Webアプリやシステムの要件定義・設計・開発・運用までを一括で請け負います。",
+          "areaServed": "JP"
+        },
+        {
+          "@type": "Service",
+          "@id": "https://aj-homepage.vercel.app/#service-ses",
+          "name": "SES（システムエンジニアリングサービス）",
+          "serviceType": "技術支援・開発チーム参画",
+          "provider": { "@id": "https://aj-homepage.vercel.app/#organization" },
+          "description": "エンジニアリングスキルを活かし、開発チームの一員として実装・改善・技術支援を提供します。",
+          "areaServed": "JP"
+        }
+      ]
+    }
+    </script>
+
+    <!-- JSON-LD: WebSite (Sitelinks Search候補) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": "https://aj-homepage.vercel.app/#website",
+      "url": "https://aj-homepage.vercel.app/",
+      "name": "AJ",
+      "description": "AIエージェント基盤の自社開発・受託開発・SESを提供する個人事業主AJの公式サイト",
+      "inLanguage": "ja-JP",
+      "publisher": { "@id": "https://aj-homepage.vercel.app/#organization" }
+    }
+    </script>
+
+    <!-- JSON-LD: FAQPage (FAQセクションと1:1で対応) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "@id": "https://aj-homepage.vercel.app/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "受託開発はどのような技術スタックに対応していますか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "（準備中）対応可能な言語・フレームワーク・クラウド環境を後日掲載予定です。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "見積もりや相談はどのように依頼できますか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "本サイトのお問い合わせフォーム、または TEL 080-5614-7439 までご連絡ください。事業内容・規模に応じて個別にお見積もりいたします。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "リモートでの稼働は可能ですか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "（準備中）リモート対応可否・常駐可否について後日詳細を掲載予定です。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "AIエージェント開発の相談は可能ですか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "可能です。自社で『エージェントゲートウェイ』を開発しており、複数のAIエージェントを統合・制御する設計・実装の知見をご提供できます。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "対応エリアはどこですか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "拠点は東京都新宿区ですが、日本全国を対象に対応可能です。海外案件の可否については個別にご相談ください。"
+          }
+        }
+      ]
+    }
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -50,10 +273,10 @@
 </head>
 <body class="font-sans text-gray-800 antialiased">
     <!-- header -->
-    <header class="fixed top-0 w-full bg-white shadow-md z-50 transition-all duration-300">
+    <header class="fixed top-0 w-full bg-white shadow-md z-50 transition-all duration-300" role="banner">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <div class="text-2xl font-bold text-blue-600">AJ</div>
+            <nav class="flex justify-between items-center h-16" aria-label="グローバルナビゲーション">
+                <a href="#mv" class="text-2xl font-bold text-blue-600" aria-label="AJ ホームへ">AJ</a>
                 <ul class="hidden md:flex space-x-8">
                     <li><a href="#mv" class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200">ホーム</a></li>
                     <li><a href="#services" class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200">事業内容</a></li>
@@ -61,12 +284,12 @@
                     <li><a href="#founder" class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200">創業者</a></li>
                     <li><a href="#contact" class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200">お問い合わせ</a></li>
                 </ul>
-                <button id="hamburger" class="md:hidden flex flex-col space-y-1.5 cursor-pointer">
+                <button id="hamburger" class="md:hidden flex flex-col space-y-1.5 cursor-pointer" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobileMenu">
                     <span class="block w-6 h-0.5 bg-gray-700 transition-all duration-300"></span>
                     <span class="block w-6 h-0.5 bg-gray-700 transition-all duration-300"></span>
                     <span class="block w-6 h-0.5 bg-gray-700 transition-all duration-300"></span>
                 </button>
-            </div>
+            </nav>
         </div>
         <!-- モバイルメニュー -->
         <div id="mobileMenu" class="hidden md:hidden bg-white border-t">
@@ -75,15 +298,17 @@
                 <li><a href="#services" class="block text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200">事業内容</a></li>
                 <li><a href="#past-work" class="block text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200">過去業務</a></li>
                 <li><a href="#founder" class="block text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200">創業者</a></li>
+                <li><a href="#faq" class="block text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200">FAQ</a></li>
                 <li><a href="#contact" class="block text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200">お問い合わせ</a></li>
             </ul>
         </div>
     </header>
 
+    <main role="main">
     <!-- MV(main visual)セクション -->
-    <section id="mv" class="bg-gradient-to-br from-blue-600 to-blue-800 text-white pt-32 pb-20 px-4 text-center">
+    <section id="mv" class="bg-gradient-to-br from-blue-600 to-blue-800 text-white pt-32 pb-20 px-4 text-center" aria-labelledby="mv-heading">
         <div class="max-w-4xl mx-auto animate-fade-in-up">
-            <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold mb-4">AJ</h1>
+            <h1 id="mv-heading" class="text-5xl md:text-6xl lg:text-7xl font-bold mb-4">AJ</h1>
             <p class="text-xl md:text-2xl mb-8 opacity-90">AIの次の時代を</p>
             <a href="#contact" class="inline-block bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
                 お問い合わせ
@@ -92,9 +317,9 @@
     </section>
 
     <!-- 事業内容セクション -->
-    <section id="services" class="py-20 bg-gray-50">
+    <section id="services" class="py-20 bg-gray-50" aria-labelledby="services-heading">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">
+            <h2 id="services-heading" class="text-4xl font-bold text-center mb-12 text-gray-800">
                 事業内容
                 <div class="w-16 h-1 bg-blue-600 mx-auto mt-4 rounded"></div>
             </h2>
@@ -119,70 +344,135 @@
     </section>
 
     <!-- 過去業務セクション -->
-    <section id="past-work" class="py-20 bg-white">
+    <section id="past-work" class="py-20 bg-white" aria-labelledby="past-work-heading">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">
+            <h2 id="past-work-heading" class="text-4xl font-bold text-center mb-12 text-gray-800">
                 過去業務
                 <div class="w-16 h-1 bg-blue-600 mx-auto mt-4 rounded"></div>
             </h2>
+            <!-- TODO: 各カードを実コンテンツに差し替え (クライアント名/期間/役割/技術/成果) -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-gray-50 p-8 rounded-xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                <article class="bg-gray-50 p-8 rounded-xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                     <h3 class="text-2xl font-semibold mb-4 text-gray-800">業務実績1</h3>
-                    <p class="text-gray-600 leading-relaxed">過去の業務実績の説明をここに記載します。</p>
-                </div>
-                <div class="bg-gray-50 p-8 rounded-xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                    <p class="text-gray-600 leading-relaxed">（準備中）クライアント名・期間・役割・使用技術・成果を後日掲載予定です。</p>
+                </article>
+                <article class="bg-gray-50 p-8 rounded-xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                     <h3 class="text-2xl font-semibold mb-4 text-gray-800">業務実績2</h3>
-                    <p class="text-gray-600 leading-relaxed">過去の業務実績の説明をここに記載します。</p>
-                </div>
-                <div class="bg-gray-50 p-8 rounded-xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                    <p class="text-gray-600 leading-relaxed">（準備中）クライアント名・期間・役割・使用技術・成果を後日掲載予定です。</p>
+                </article>
+                <article class="bg-gray-50 p-8 rounded-xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                     <h3 class="text-2xl font-semibold mb-4 text-gray-800">業務実績3</h3>
-                    <p class="text-gray-600 leading-relaxed">過去の業務実績の説明をここに記載します。</p>
-                </div>
+                    <p class="text-gray-600 leading-relaxed">（準備中）クライアント名・期間・役割・使用技術・成果を後日掲載予定です。</p>
+                </article>
             </div>
         </div>
     </section>
 
     <!-- 創業者セクション -->
-    <section id="founder" class="py-20 bg-gray-50">
+    <section id="founder" class="py-20 bg-gray-50" aria-labelledby="founder-heading">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">
+            <h2 id="founder-heading" class="text-4xl font-bold text-center mb-12 text-gray-800">
                 創業者
                 <div class="w-16 h-1 bg-blue-600 mx-auto mt-4 rounded"></div>
             </h2>
-            <div class="space-y-6">
-                <h3 class="text-3xl font-semibold text-blue-600 mb-4">秋田 隼</h3>
+            <article class="space-y-6" itemscope itemtype="https://schema.org/Person">
+                <h3 class="text-3xl font-semibold text-blue-600 mb-4" itemprop="name">秋田 隼</h3>
                 <p class="text-lg text-gray-600 leading-relaxed">
                     個人事業主として、お客様のビジネスをサポートするサービスを提供しております。
                 </p>
                 <p class="text-lg text-gray-600 leading-relaxed">
                     経験と専門知識を活かし、お客様の成功を第一に考えたサービスを心がけております。
                 </p>
-                <div class="mt-8 p-8 bg-white rounded-lg space-y-4">
+                <dl class="mt-8 p-8 bg-white rounded-lg space-y-4" itemscope itemtype="https://schema.org/LocalBusiness">
                     <div class="text-lg">
-                        <strong class="text-gray-800">屋号：</strong>
-                        <span class="text-gray-600">AJ</span>
+                        <dt class="inline font-bold text-gray-800">屋号：</dt>
+                        <dd class="inline text-gray-600" itemprop="name">AJ</dd>
                     </div>
                     <div class="text-lg">
-                        <strong class="text-gray-800">事業内容：</strong>
-                        <span class="text-gray-600">ご記入ください</span>
+                        <dt class="inline font-bold text-gray-800">事業内容：</dt>
+                        <dd class="inline text-gray-600" itemprop="description">
+                            <!-- TODO: 実コンテンツを記入 -->
+                            （準備中）
+                        </dd>
+                    </div>
+                    <div class="text-lg" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+                        <dt class="inline font-bold text-gray-800">所在地：</dt>
+                        <dd class="inline text-gray-600">
+                            <span itemprop="addressRegion">東京都</span><span itemprop="addressLocality">新宿区</span><span itemprop="streetAddress">矢来町52-5 Herme神楽坂205号室</span>
+                        </dd>
                     </div>
                     <div class="text-lg">
-                        <strong class="text-gray-800">所在地：</strong>
-                        <span class="text-gray-600">東京都新宿区矢来町52-5 Herme神楽坂205号室</span>
+                        <dt class="inline font-bold text-gray-800">お問い合わせ：</dt>
+                        <dd class="inline text-gray-600">TEL: <a href="tel:+81-80-5614-7439" itemprop="telephone" class="hover:text-blue-600">080-5614-7439</a></dd>
                     </div>
-                    <div class="text-lg">
-                        <strong class="text-gray-800">お問い合わせ：</strong>
-                        <span class="text-gray-600">TEL: 080-5614-7439</span>
+                </dl>
+            </article>
+        </div>
+    </section>
+
+    <!-- FAQセクション (AIO: FAQPage schemaと1:1で対応) -->
+    <section id="faq" class="py-20 bg-white" aria-labelledby="faq-heading">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 id="faq-heading" class="text-4xl font-bold text-center mb-12 text-gray-800">
+                よくあるご質問
+                <div class="w-16 h-1 bg-blue-600 mx-auto mt-4 rounded"></div>
+            </h2>
+            <div class="space-y-4">
+                <details class="group bg-gray-50 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden">
+                    <summary class="cursor-pointer p-6 font-semibold text-lg text-gray-800 flex justify-between items-center">
+                        <span>受託開発はどのような技術スタックに対応していますか？</span>
+                        <span class="text-blue-600 group-open:rotate-45 transition-transform duration-300 text-2xl leading-none">+</span>
+                    </summary>
+                    <div class="px-6 pb-6 text-gray-600 leading-relaxed">
+                        <!-- TODO: 実コンテンツを記入 -->
+                        （準備中）対応可能な言語・フレームワーク・クラウド環境を後日掲載予定です。
                     </div>
-                </div>
+                </details>
+                <details class="group bg-gray-50 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden">
+                    <summary class="cursor-pointer p-6 font-semibold text-lg text-gray-800 flex justify-between items-center">
+                        <span>見積もりや相談はどのように依頼できますか？</span>
+                        <span class="text-blue-600 group-open:rotate-45 transition-transform duration-300 text-2xl leading-none">+</span>
+                    </summary>
+                    <div class="px-6 pb-6 text-gray-600 leading-relaxed">
+                        本サイトのお問い合わせフォーム、または TEL <a href="tel:+81-80-5614-7439" class="text-blue-600 hover:underline">080-5614-7439</a> までご連絡ください。事業内容・規模に応じて個別にお見積もりいたします。
+                    </div>
+                </details>
+                <details class="group bg-gray-50 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden">
+                    <summary class="cursor-pointer p-6 font-semibold text-lg text-gray-800 flex justify-between items-center">
+                        <span>リモートでの稼働は可能ですか？</span>
+                        <span class="text-blue-600 group-open:rotate-45 transition-transform duration-300 text-2xl leading-none">+</span>
+                    </summary>
+                    <div class="px-6 pb-6 text-gray-600 leading-relaxed">
+                        <!-- TODO: 実コンテンツを記入 -->
+                        （準備中）リモート対応可否・常駐可否について後日詳細を掲載予定です。
+                    </div>
+                </details>
+                <details class="group bg-gray-50 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden">
+                    <summary class="cursor-pointer p-6 font-semibold text-lg text-gray-800 flex justify-between items-center">
+                        <span>AIエージェント開発の相談は可能ですか？</span>
+                        <span class="text-blue-600 group-open:rotate-45 transition-transform duration-300 text-2xl leading-none">+</span>
+                    </summary>
+                    <div class="px-6 pb-6 text-gray-600 leading-relaxed">
+                        可能です。自社で『エージェントゲートウェイ』を開発しており、複数のAIエージェントを統合・制御する設計・実装の知見をご提供できます。
+                    </div>
+                </details>
+                <details class="group bg-gray-50 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden">
+                    <summary class="cursor-pointer p-6 font-semibold text-lg text-gray-800 flex justify-between items-center">
+                        <span>対応エリアはどこですか？</span>
+                        <span class="text-blue-600 group-open:rotate-45 transition-transform duration-300 text-2xl leading-none">+</span>
+                    </summary>
+                    <div class="px-6 pb-6 text-gray-600 leading-relaxed">
+                        拠点は東京都新宿区ですが、日本全国を対象に対応可能です。海外案件の可否については個別にご相談ください。
+                    </div>
+                </details>
             </div>
         </div>
     </section>
 
     <!-- お問い合わせセクション -->
-    <section id="contact" class="py-20 bg-white">
+    <section id="contact" class="py-20 bg-gray-50" aria-labelledby="contact-heading">
         <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">
+            <h2 id="contact-heading" class="text-4xl font-bold text-center mb-12 text-gray-800">
                 お問い合わせ
                 <div class="w-16 h-1 bg-blue-600 mx-auto mt-4 rounded"></div>
             </h2>
@@ -223,10 +513,15 @@
         </div>
     </section>
 
+    </main>
+
     <!-- footer -->
-    <footer class="bg-gray-800 text-white py-8">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <footer class="bg-gray-800 text-white py-8" role="contentinfo">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm">
             <p>&copy; 2024 AJ. All rights reserved.</p>
+            <address class="not-italic mt-2 text-gray-400">
+                AJ｜東京都新宿区矢来町52-5 Herme神楽坂205号室｜TEL: <a href="tel:+81-80-5614-7439" class="hover:text-white">080-5614-7439</a>
+            </address>
         </div>
     </footer>
 
