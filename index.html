@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,9 +21,9 @@
     -->
 
     <!-- 基本メタ -->
-    <title>AJ｜AIエージェント基盤の自社開発・受託開発・SES｜東京・新宿区</title>
+    <title>AJ｜AIの次の時代を</title>
     <meta name="description" content="AJは東京都新宿区を拠点とする個人事業主。AIエージェント統合基盤（エージェントゲートウェイ）の自社開発、Webアプリの受託開発、エンジニアリングSESを提供。創業者は秋田隼。お問い合わせはTEL 080-5614-7439 まで。">
-    <meta name="keywords" content="AJ, 秋田隼, AIエージェント, エージェントゲートウェイ, 受託開発, SES, 個人事業主, 東京, 新宿区, AI開発, Web開発">
+    <meta name="keywords" content="AJ, 秋田隼, AIエージェント, エージェントゲートウェイ, 受託開発, SES, 個人事業主, 東京, AI開発, Web開発">
     <meta name="author" content="秋田 隼">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     <meta name="googlebot" content="index, follow">
@@ -33,7 +33,7 @@
     <!-- Open Graph (Facebook / LinkedIn / 多くのLLM参照系) -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="AJ">
-    <meta property="og:title" content="AJ｜AIエージェント基盤の自社開発・受託開発・SES">
+    <meta property="og:title" content="AJ｜AIの次の時代を">
     <meta property="og:description" content="AIの次の時代を。エージェントゲートウェイの自社開発、Webアプリ受託開発、SESを東京・新宿区から提供する個人事業主AJ。">
     <meta property="og:url" content="https://aj-homepage.vercel.app/">
     <meta property="og:image" content="https://aj-homepage.vercel.app/ogp.png">
@@ -43,12 +43,12 @@
 
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="AJ｜AIエージェント基盤の自社開発・受託開発・SES">
+    <meta name="twitter:title" content="AJ｜AIの次の時代を">
     <meta name="twitter:description" content="AIの次の時代を。エージェントゲートウェイの自社開発、Webアプリ受託開発、SESを提供する個人事業主AJ。">
     <meta name="twitter:image" content="https://aj-homepage.vercel.app/ogp.png">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/assets/aj-company-mark.svg">
+    <link rel="icon" type="image/svg+xml" href="/assets/aj-logo.svg">
 
     <!-- AI/LLM向けメタヒント -->
     <link rel="alternate" type="text/markdown" title="AJ - LLM向け概要 (llms.txt)" href="/llms.txt">
@@ -63,7 +63,7 @@
       "name": "AJ",
       "alternateName": "AJ（屋号）",
       "url": "https://aj-homepage.vercel.app/",
-      "logo": "https://aj-homepage.vercel.app/assets/aj-company-logo.svg",
+      "logo": "https://aj-homepage.vercel.app/assets/aj-logo.svg",
       "image": "https://aj-homepage.vercel.app/ogp.png",
       "description": "AIエージェント統合基盤（エージェントゲートウェイ）の自社開発、Webアプリの受託開発、エンジニアリングSESを提供する個人事業主。",
       "slogan": "AIの次の時代を",
@@ -247,10 +247,9 @@
         <div class="site-shell">
             <nav class="site-nav" aria-label="グローバルナビゲーション">
                 <a href="#mv" class="brand" aria-label="AJ ホームへ">
-                    <img class="brand-logo" src="assets/aj-company-logo.svg" alt="" width="210" height="56">
+                    <img class="brand-logo" src="assets/aj-logo.svg" alt="AJ" width="42" height="42">
                 </a>
                 <ul class="nav-links">
-                    <li><a href="#philosophy">理念</a></li>
                     <li><a href="#services">事業内容</a></li>
                     <li><a href="#past-work">過去業務</a></li>
                     <li><a href="#founder">創業者</a></li>
@@ -266,7 +265,6 @@
             </nav>
         </div>
         <div id="mobileMenu" class="mobile-menu" hidden>
-            <a href="#philosophy">理念</a>
             <a href="#services">事業内容</a>
             <a href="#past-work">過去業務</a>
             <a href="#founder">創業者</a>
@@ -279,11 +277,11 @@
     <main id="content" role="main">
         <section id="mv" class="hero" aria-labelledby="mv-heading">
             <div class="section-shell hero-grid">
-                <div class="hero-copy">
-                    <p class="eyebrow">Tokyo, Kagurazaka based engineering</p>
+                <div class="hero-copy reveal">
+                    <p class="eyebrow">Tokyo</p>
                     <h1 id="mv-heading">AJ</h1>
                     <p class="hero-lead">
-                        AIエージェント基盤、Webアプリ受託開発、SESの実装支援を、余計な抽象論を挟まず事業に接続します。
+                        DX支援を通してAIと人をつなぎ、AIの次の時代をつくります。
                     </p>
                     <div class="hero-actions">
                         <a class="button button-primary" href="#contact">相談する</a>
@@ -304,87 +302,28 @@
                         </div>
                     </dl>
                 </div>
-
-                <aside class="hero-panel" aria-label="AJの提供領域">
-                    <div class="panel-head">
-                        <span>AJ Scope</span>
-                        <span>Active</span>
-                    </div>
-                    <div class="scope-list">
-                        <div class="scope-row">
-                            <span class="scope-index">01</span>
-                            <div>
-                                <strong>Agent Gateway</strong>
-                                <p>複数エージェントの統合・制御を前提にした自社開発。</p>
-                            </div>
-                        </div>
-                        <div class="scope-row">
-                            <span class="scope-index">02</span>
-                            <div>
-                                <strong>Contract Development</strong>
-                                <p>Webアプリ、業務システムの設計・実装・運用改善。</p>
-                            </div>
-                        </div>
-                        <div class="scope-row">
-                            <span class="scope-index">03</span>
-                            <div>
-                                <strong>Engineering Support</strong>
-                                <p>開発チームへの参画、技術支援、実装速度の補強。</p>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="panel-note">見た目よりも、要件・実装・運用に耐える説明責任を優先します。</p>
-                </aside>
-            </div>
-        </section>
-
-        <section id="philosophy" class="section" aria-labelledby="philosophy-heading">
-            <div class="section-shell philosophy-layout">
-                <div class="philosophy-title">
-                    <p class="eyebrow">Philosophy</p>
-                    <h2 id="philosophy-heading">企業理念</h2>
-                    <p>流行りのAI論ではなく、事業の成果に残る技術を。</p>
-                </div>
-                <div class="philosophy-body">
-                    <p class="philosophy-statement">AIの次の時代を、現場の事業に接続する。</p>
-                    <p>技術そのものを目的にしません。お客様の事業が抱える課題を起点に、要件・実装・運用まで責任を持てる形で技術を届けることを理念とします。AIエージェント基盤の開発も受託も技術支援も、最後に事業の成果として残るかどうかで判断します。</p>
-                    <ul class="philosophy-values">
-                        <li>
-                            <strong>事業に接続する</strong>
-                            <p>抽象的なAI論で終わらせず、相談内容を技術選定・実装範囲・運用の論点へ分解し、現実的な進め方へ落とし込みます。</p>
-                        </li>
-                        <li>
-                            <strong>説明責任を持つ</strong>
-                            <p>見た目や流行ではなく、要件・実装・運用に耐える説明ができることを優先します。判断の根拠を常に明示します。</p>
-                        </li>
-                        <li>
-                            <strong>長く使える形にする</strong>
-                            <p>一度きりの納品ではなく、改善と運用に耐える設計を重視し、事業に長く残るプロダクトをつくります。</p>
-                        </li>
-                    </ul>
-                </div>
             </div>
         </section>
 
         <section id="services" class="section section-banded" aria-labelledby="services-heading">
             <div class="section-shell">
-                <div class="section-heading">
+                <div class="section-heading reveal">
                     <p class="eyebrow">Services</p>
                     <h2 id="services-heading">事業内容</h2>
                     <p>派手な約束ではなく、提供範囲を明確に切り分けています。</p>
                 </div>
                 <div class="service-list">
-                    <article class="service-item">
+                    <article class="service-item reveal">
                         <span class="service-number">01</span>
                         <h3>自社開発</h3>
                         <p>エージェントゲートウェイを開発中。複数のAIエージェントを統合・制御し、業務基盤として使える形を目指しています。</p>
                     </article>
-                    <article class="service-item">
+                    <article class="service-item reveal">
                         <span class="service-number">02</span>
                         <h3>受託開発</h3>
                         <p>Webアプリやシステムの要件整理、設計、開発、運用改善を一括で支援します。曖昧な要望を実装単位まで落とし込みます。</p>
                     </article>
-                    <article class="service-item">
+                    <article class="service-item reveal">
                         <span class="service-number">03</span>
                         <h3>SES</h3>
                         <p>開発チームの一員として参画し、実装、改善、技術支援を提供します。必要な場所にエンジニアリングの手数を入れます。</p>
@@ -395,7 +334,7 @@
 
         <section id="past-work" class="section" aria-labelledby="past-work-heading">
             <div class="section-shell work-layout">
-                <div class="section-heading section-heading-left">
+                <div class="section-heading section-heading-left reveal">
                     <p class="eyebrow">Experience</p>
                     <h2 id="past-work-heading">過去業務</h2>
                     <p>教育現場の業務改善から、Web開発、需要予測、画像・音声AI、AI店員アプリまで。実務で触った領域を時系列で整理しています。</p>
@@ -403,7 +342,7 @@
                         <a href="https://www.linkedin.com/in/jun-akita-526356334/" target="_blank" rel="noopener">LinkedIn</a>
                     </div>
                 </div>
-                <div class="work-timeline">
+                <div class="work-timeline reveal">
                     <article class="work-item">
                         <div class="work-meta">
                             <time datetime="2022-12">2022/12 - 2025/09</time>
@@ -573,15 +512,12 @@
 
         <section id="founder" class="section section-banded" aria-labelledby="founder-heading">
             <div class="section-shell founder-layout">
-                <div class="founder-title">
+                <div class="founder-title reveal">
                     <p class="eyebrow">Founder</p>
                     <h2 id="founder-heading">秋田 隼</h2>
                     <p>個人事業主 / AJ</p>
-                    <div class="founder-photo">
-                        <img src="assets/founder-jun-akita.webp" alt="秋田 隼の写真" width="720" height="900" loading="lazy" decoding="async">
-                    </div>
                 </div>
-                <article class="founder-body" itemscope itemtype="https://schema.org/Person">
+                <article class="founder-body reveal" itemscope itemtype="https://schema.org/Person">
                     <p itemprop="description">
                         AIエージェント統合基盤の自社開発と、Webアプリケーション開発・技術支援を提供します。
                     </p>
@@ -615,10 +551,6 @@
                             <dt>LinkedIn</dt>
                             <dd><a href="https://www.linkedin.com/in/jun-akita-526356334/" target="_blank" rel="noopener">jun-akita-526356334</a></dd>
                         </div>
-                        <div>
-                            <dt>創業者紹介</dt>
-                            <dd><a href="https://myhomepage-1xu.pages.dev/" target="_blank" rel="noopener">myhomepage-1xu.pages.dev</a></dd>
-                        </div>
                     </dl>
                 </article>
             </div>
@@ -626,11 +558,11 @@
 
         <section id="faq" class="section" aria-labelledby="faq-heading">
             <div class="section-shell faq-shell">
-                <div class="section-heading">
+                <div class="section-heading reveal">
                     <p class="eyebrow">FAQ</p>
                     <h2 id="faq-heading">よくあるご質問</h2>
                 </div>
-                <div class="faq-list">
+                <div class="faq-list reveal">
                     <details>
                         <summary>
                             <span>受託開発はどのような技術スタックに対応していますか？</span>
@@ -682,7 +614,7 @@
 
         <section id="contact" class="section contact-section" aria-labelledby="contact-heading">
             <div class="section-shell contact-layout">
-                <div class="contact-copy">
+                <div class="contact-copy reveal">
                     <p class="eyebrow">Contact</p>
                     <h2 id="contact-heading">お問い合わせ</h2>
                     <p>開発相談、技術支援、SES参画について、内容が固まっていない段階でも連絡できます。</p>
@@ -691,7 +623,7 @@
                         <a href="tel:+81-80-5614-7439">080-5614-7439</a>
                     </div>
                 </div>
-                <form id="contactForm" class="contact-form">
+                <form id="contactForm" class="contact-form reveal">
                     <div class="form-field">
                         <label for="name">お名前 <span>必須</span></label>
                         <input type="text" id="name" name="name" required autocomplete="name">
