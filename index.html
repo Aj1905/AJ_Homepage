@@ -28,7 +28,7 @@
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     <meta name="googlebot" content="index, follow">
     <link rel="canonical" href="https://aj-homepage.vercel.app/">
-    <meta name="theme-color" content="#2563eb">
+    <meta name="theme-color" content="#123f36">
 
     <!-- Open Graph (Facebook / LinkedIn / 多くのLLM参照系) -->
     <meta property="og:type" content="website">
@@ -115,14 +115,24 @@
       "givenName": "隼",
       "familyName": "秋田",
       "jobTitle": "個人事業主 / 創業者",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "東京大学情報理工学研究科コンピュータ科学専攻 相澤彰子研究室"
+      },
       "worksFor": {
         "@id": "https://aj-homepage.vercel.app/#organization"
       },
       "url": "https://aj-homepage.vercel.app/#founder",
+      "sameAs": [
+        "https://www.linkedin.com/in/jun-akita-526356334/"
+      ],
       "knowsAbout": [
         "AIエージェント開発",
         "Webアプリケーション開発",
-        "システム設計"
+        "システム設計",
+        "需要予測AI",
+        "音声AI",
+        "画像処理AI"
       ]
     }
     </script>
@@ -228,299 +238,452 @@
     }
     </script>
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Meiryo', 'sans-serif'],
-                    },
-                    animation: {
-                        'fade-in-up': 'fadeInUp 0.8s ease-out',
-                        'fade-in': 'fadeIn 0.6s ease-out',
-                    },
-                    keyframes: {
-                        fadeInUp: {
-                            '0%': { opacity: '0', transform: 'translateY(30px)' },
-                            '100%': { opacity: '1', transform: 'translateY(0)' },
-                        },
-                        fadeIn: {
-                            '0%': { opacity: '0' },
-                            '100%': { opacity: '1' },
-                        },
-                    },
-                }
-            }
-        }
-    </script>
-    <style>
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        .animate-fade-in-up {
-            animation: fadeInUp 0.8s ease-out;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body class="font-sans text-gray-800 antialiased">
-    <!-- header -->
-    <header class="fixed top-0 w-full bg-white shadow-md z-50 transition-all duration-300" role="banner">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <nav class="flex justify-between items-center h-16" aria-label="グローバルナビゲーション">
-                <a href="#mv" class="text-2xl font-bold text-blue-600" aria-label="AJ ホームへ">AJ</a>
-                <ul class="hidden md:flex space-x-8">
-                    <li><a href="#mv" class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200">ホーム</a></li>
-                    <li><a href="#services" class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200">事業内容</a></li>
-                    <li><a href="#past-work" class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200">過去業務</a></li>
-                    <li><a href="#founder" class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200">創業者</a></li>
-                    <li><a href="#contact" class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200">お問い合わせ</a></li>
+<body>
+    <a class="skip-link" href="#content">本文へ移動</a>
+
+    <header class="site-header" role="banner">
+        <div class="site-shell">
+            <nav class="site-nav" aria-label="グローバルナビゲーション">
+                <a href="#mv" class="brand" aria-label="AJ ホームへ">
+                    <span class="brand-mark">AJ</span>
+                    <span class="brand-text">AI Agent / Web / SES</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#services">事業内容</a></li>
+                    <li><a href="#past-work">過去業務</a></li>
+                    <li><a href="#founder">創業者</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#contact">お問い合わせ</a></li>
                 </ul>
-                <button id="hamburger" class="md:hidden flex flex-col space-y-1.5 cursor-pointer" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobileMenu">
-                    <span class="block w-6 h-0.5 bg-gray-700 transition-all duration-300"></span>
-                    <span class="block w-6 h-0.5 bg-gray-700 transition-all duration-300"></span>
-                    <span class="block w-6 h-0.5 bg-gray-700 transition-all duration-300"></span>
+                <a class="nav-call" href="tel:+81-80-5614-7439">080-5614-7439</a>
+                <button id="hamburger" class="menu-button" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobileMenu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </button>
             </nav>
         </div>
-        <!-- モバイルメニュー -->
-        <div id="mobileMenu" class="hidden md:hidden bg-white border-t">
-            <ul class="flex flex-col space-y-4 px-4 py-4">
-                <li><a href="#mv" class="block text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200">ホーム</a></li>
-                <li><a href="#services" class="block text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200">事業内容</a></li>
-                <li><a href="#past-work" class="block text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200">過去業務</a></li>
-                <li><a href="#founder" class="block text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200">創業者</a></li>
-                <li><a href="#faq" class="block text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200">FAQ</a></li>
-                <li><a href="#contact" class="block text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200">お問い合わせ</a></li>
-            </ul>
+        <div id="mobileMenu" class="mobile-menu" hidden>
+            <a href="#services">事業内容</a>
+            <a href="#past-work">過去業務</a>
+            <a href="#founder">創業者</a>
+            <a href="#faq">FAQ</a>
+            <a href="#contact">お問い合わせ</a>
+            <a href="tel:+81-80-5614-7439">電話する</a>
         </div>
     </header>
 
-    <main role="main">
-    <!-- MV(main visual)セクション -->
-    <section id="mv" class="bg-gradient-to-br from-blue-600 to-blue-800 text-white pt-32 pb-20 px-4 text-center" aria-labelledby="mv-heading">
-        <div class="max-w-4xl mx-auto animate-fade-in-up">
-            <h1 id="mv-heading" class="text-5xl md:text-6xl lg:text-7xl font-bold mb-4">AJ</h1>
-            <p class="text-xl md:text-2xl mb-8 opacity-90">AIの次の時代を</p>
-            <a href="#contact" class="inline-block bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
-                お問い合わせ
-            </a>
-        </div>
-    </section>
+    <main id="content" role="main">
+        <section id="mv" class="hero" aria-labelledby="mv-heading">
+            <div class="section-shell hero-grid">
+                <div class="hero-copy reveal">
+                    <p class="eyebrow">Tokyo, Kagurazaka based engineering</p>
+                    <h1 id="mv-heading">AJ</h1>
+                    <p class="hero-lead">
+                        AIエージェント基盤、Webアプリ受託開発、SESの実装支援を、余計な抽象論を挟まず事業に接続します。
+                    </p>
+                    <div class="hero-actions">
+                        <a class="button button-primary" href="#contact">相談する</a>
+                        <a class="button button-secondary" href="#services">事業を見る</a>
+                    </div>
+                    <dl class="hero-facts" aria-label="AJの基本情報">
+                        <div>
+                            <dt>拠点</dt>
+                            <dd>東京都新宿区</dd>
+                        </div>
+                        <div>
+                            <dt>領域</dt>
+                            <dd>AI / Web / SES</dd>
+                        </div>
+                        <div>
+                            <dt>連絡</dt>
+                            <dd><a href="tel:+81-80-5614-7439">080-5614-7439</a></dd>
+                        </div>
+                    </dl>
+                </div>
 
-    <!-- 事業内容セクション -->
-    <section id="services" class="py-20 bg-gray-50" aria-labelledby="services-heading">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 id="services-heading" class="text-4xl font-bold text-center mb-12 text-gray-800">
-                事業内容
-                <div class="w-16 h-1 bg-blue-600 mx-auto mt-4 rounded"></div>
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-center">
-                    <div class="text-5xl mb-4">🚀</div>
-                    <h3 class="text-2xl font-semibold mb-4 text-gray-800">自社開発</h3>
-                    <p class="text-gray-600 leading-relaxed">エージェントゲートウェイを開発中。複数のAIエージェントを統合・制御し、AI時代の業務基盤となるプロダクトを目指しています。</p>
+                <aside class="hero-panel reveal" aria-label="AJの提供領域">
+                    <div class="panel-head">
+                        <span>AJ Scope</span>
+                        <span>Active</span>
+                    </div>
+                    <div class="scope-list">
+                        <div class="scope-row">
+                            <span class="scope-index">01</span>
+                            <div>
+                                <strong>Agent Gateway</strong>
+                                <p>複数エージェントの統合・制御を前提にした自社開発。</p>
+                            </div>
+                        </div>
+                        <div class="scope-row">
+                            <span class="scope-index">02</span>
+                            <div>
+                                <strong>Contract Development</strong>
+                                <p>Webアプリ、業務システムの設計・実装・運用改善。</p>
+                            </div>
+                        </div>
+                        <div class="scope-row">
+                            <span class="scope-index">03</span>
+                            <div>
+                                <strong>Engineering Support</strong>
+                                <p>開発チームへの参画、技術支援、実装速度の補強。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="panel-note">見た目よりも、要件・実装・運用に耐える説明責任を優先します。</p>
+                </aside>
+            </div>
+        </section>
+
+        <section id="services" class="section section-banded" aria-labelledby="services-heading">
+            <div class="section-shell">
+                <div class="section-heading reveal">
+                    <p class="eyebrow">Services</p>
+                    <h2 id="services-heading">事業内容</h2>
+                    <p>派手な約束ではなく、提供範囲を明確に切り分けています。</p>
                 </div>
-                <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-center">
-                    <div class="text-5xl mb-4">💼</div>
-                    <h3 class="text-2xl font-semibold mb-4 text-gray-800">受託開発</h3>
-                    <p class="text-gray-600 leading-relaxed">お客様のご要望に基づき、Webアプリやシステムの設計・開発を一括で請け負います。要件定義から運用まで伴走します。</p>
-                </div>
-                <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-center">
-                    <div class="text-5xl mb-4">🎯</div>
-                    <h3 class="text-2xl font-semibold mb-4 text-gray-800">SES</h3>
-                    <p class="text-gray-600 leading-relaxed">エンジニアリングスキルを活かし、開発チームの一員としてプロジェクトに参画。技術支援・実装・改善をご提供します。</p>
+                <div class="service-list">
+                    <article class="service-item reveal">
+                        <span class="service-number">01</span>
+                        <h3>自社開発</h3>
+                        <p>エージェントゲートウェイを開発中。複数のAIエージェントを統合・制御し、業務基盤として使える形を目指しています。</p>
+                    </article>
+                    <article class="service-item reveal">
+                        <span class="service-number">02</span>
+                        <h3>受託開発</h3>
+                        <p>Webアプリやシステムの要件整理、設計、開発、運用改善を一括で支援します。曖昧な要望を実装単位まで落とし込みます。</p>
+                    </article>
+                    <article class="service-item reveal">
+                        <span class="service-number">03</span>
+                        <h3>SES</h3>
+                        <p>開発チームの一員として参画し、実装、改善、技術支援を提供します。必要な場所にエンジニアリングの手数を入れます。</p>
+                    </article>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- 過去業務セクション -->
-    <section id="past-work" class="py-20 bg-white" aria-labelledby="past-work-heading">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 id="past-work-heading" class="text-4xl font-bold text-center mb-12 text-gray-800">
-                過去業務
-                <div class="w-16 h-1 bg-blue-600 mx-auto mt-4 rounded"></div>
-            </h2>
-            <!-- TODO: 各カードを実コンテンツに差し替え (クライアント名/期間/役割/技術/成果) -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <article class="bg-gray-50 p-8 rounded-xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-                    <h3 class="text-2xl font-semibold mb-4 text-gray-800">業務実績1</h3>
-                    <p class="text-gray-600 leading-relaxed">（準備中）クライアント名・期間・役割・使用技術・成果を後日掲載予定です。</p>
-                </article>
-                <article class="bg-gray-50 p-8 rounded-xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-                    <h3 class="text-2xl font-semibold mb-4 text-gray-800">業務実績2</h3>
-                    <p class="text-gray-600 leading-relaxed">（準備中）クライアント名・期間・役割・使用技術・成果を後日掲載予定です。</p>
-                </article>
-                <article class="bg-gray-50 p-8 rounded-xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-                    <h3 class="text-2xl font-semibold mb-4 text-gray-800">業務実績3</h3>
-                    <p class="text-gray-600 leading-relaxed">（準備中）クライアント名・期間・役割・使用技術・成果を後日掲載予定です。</p>
+        <section id="past-work" class="section" aria-labelledby="past-work-heading">
+            <div class="section-shell work-layout">
+                <div class="section-heading section-heading-left reveal">
+                    <p class="eyebrow">Experience</p>
+                    <h2 id="past-work-heading">過去業務</h2>
+                    <p>教育現場の業務改善から、Web開発、需要予測、画像・音声AI、AI店員アプリまで。実務で触った領域を時系列で整理しています。</p>
+                    <div class="work-profile-links" aria-label="外部プロフィール">
+                        <a href="https://www.linkedin.com/in/jun-akita-526356334/" target="_blank" rel="noopener">LinkedIn</a>
+                    </div>
+                </div>
+                <div class="work-timeline reveal">
+                    <article class="work-item">
+                        <div class="work-meta">
+                            <time datetime="2022-12">2022/12 - 2025/09</time>
+                            <span>株式会社Stardy</span>
+                        </div>
+                        <div class="work-content">
+                            <span class="work-type">業務</span>
+                            <h3>数学講師 / 教材作成 / 業務管理ツール開発</h3>
+                            <p>数学講師として数学・物理教材を作成し、Google Workspace、GAS、GCP、Pythonを使った従業員管理ツールと学生対応チャットBotを開発。フォーム、スプレッドシート、GASを連携し、教育現場の業務にソフトウェアを組み込む経験を得ました。</p>
+                            <div class="tech-list" aria-label="使用技術">
+                                <span>Google Workspace</span>
+                                <span>GAS</span>
+                                <span>GCP</span>
+                                <span>Python</span>
+                            </div>
+                            <a class="work-reference" href="https://stardy.co.jp/" target="_blank" rel="noopener">参考HP</a>
+                        </div>
+                    </article>
+
+                    <article class="work-item">
+                        <div class="work-meta">
+                            <time datetime="2023-01">2023/01 - 2023/03</time>
+                            <span>個人開発</span>
+                        </div>
+                        <div class="work-content">
+                            <span class="work-type">個人開発</span>
+                            <h3>FX自動売買ツールの作成</h3>
+                            <p>海外証券会社で共通利用されるMT4/MT5向けに、MQL4/MQL5を使ったインジケータとエキスパートアドバイザを開発。FX自動売買の検証・運用補助を目的にしたツールを作成しました。</p>
+                            <div class="tech-list" aria-label="使用技術">
+                                <span>MQL4</span>
+                                <span>MQL5</span>
+                                <span>MT4</span>
+                                <span>MT5</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="work-item">
+                        <div class="work-meta">
+                            <time datetime="2023-06">2023/06 - 2024/09</time>
+                            <span>学生団体Nagare</span>
+                        </div>
+                        <div class="work-content">
+                            <span class="work-type">団体設立 / Web制作</span>
+                            <h3>金魚農家向けPRサイト制作</h3>
+                            <p>友人と学生団体Nagareを設立し、愛知県弥富市の金魚農家の売上回復に向けたPR活動としてWordPressサイトを制作。HTML、CSS、JavaScript、PHPを用いて、情報発信の導線を整備しました。</p>
+                            <div class="tech-list" aria-label="使用技術">
+                                <span>WordPress</span>
+                                <span>HTML</span>
+                                <span>CSS</span>
+                                <span>JavaScript</span>
+                                <span>PHP</span>
+                            </div>
+                            <a class="work-reference" href="https://theclubmoney.net" target="_blank" rel="noopener">農家HP</a>
+                        </div>
+                    </article>
+
+                    <article class="work-item">
+                        <div class="work-meta">
+                            <time datetime="2023-12">2023/12 - 現在</time>
+                            <span>Outlier AI</span>
+                        </div>
+                        <div class="work-content">
+                            <span class="work-type">AIデータアノテーション</span>
+                            <h3>音声・動画生成モデル向けデータ整備</h3>
+                            <p>音声モデル、動画生成モデル向けのデータアノテーションを担当。生成AIモデルの評価・改善に使うデータ整備を経験しています。</p>
+                            <div class="tech-list" aria-label="使用領域">
+                                <span>音声モデル</span>
+                                <span>動画生成モデル</span>
+                                <span>データアノテーション</span>
+                            </div>
+                            <a class="work-reference" href="https://outlier.ai" target="_blank" rel="noopener">参考HP</a>
+                        </div>
+                    </article>
+
+                    <article class="work-item">
+                        <div class="work-meta">
+                            <time datetime="2025-05">2025/05 - 現在</time>
+                            <span>ALANSE株式会社</span>
+                        </div>
+                        <div class="work-content">
+                            <span class="work-type">需要予測AI</span>
+                            <h3>飲食店向け需要予測モデルの設計・説明</h3>
+                            <p>British Pub Hubおよびキリンシティの需要予測AIモデルを、設計から予測、顧客説明まで担当。LightGBMとpolarsを用い、時間ブロック単位の予測設計で決定係数0.85-0.90を達成しました。</p>
+                            <div class="tech-list" aria-label="使用技術">
+                                <span>Python</span>
+                                <span>LightGBM</span>
+                                <span>polars</span>
+                                <span>需要予測</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="work-item">
+                        <div class="work-meta">
+                            <time datetime="2025-06">2025/06 - 2025/11</time>
+                            <span>合同会社kamomemon</span>
+                        </div>
+                        <div class="work-content">
+                            <span class="work-type">起業 / プロダクト開発</span>
+                            <h3>プロンプト共有プラットフォームアプリの開発</h3>
+                            <p>友人と起業し、プロンプト共有プラットフォームアプリを開発。アイデア検討、設計、開発、営業まで一通り担当しました。ChatGPT 5の無料化によりアプリの優位性が薄れ、事業化を停止しました。</p>
+                            <div class="tech-list" aria-label="使用技術">
+                                <span>Next.js</span>
+                                <span>TypeScript</span>
+                                <span>Go</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="work-item">
+                        <div class="work-meta">
+                            <time datetime="2025-09">2025/09 - 現在</time>
+                            <span>株式会社ARCRA</span>
+                        </div>
+                        <div class="work-content">
+                            <span class="work-type">画像処理AI</span>
+                            <h3>真珠の傷判定AIソフト開発</h3>
+                            <p>真珠の傷を判定する画像処理AIソフトの開発に従事。YOLOv8のバウンディングボックスを前提にしたデータアノテーションを担当しています。</p>
+                            <div class="tech-list" aria-label="使用技術">
+                                <span>YOLOv8</span>
+                                <span>Bounding Box</span>
+                                <span>データアノテーション</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="work-item">
+                        <div class="work-meta">
+                            <time datetime="2026-02">2026/02 - 現在</time>
+                            <span>nocall株式会社</span>
+                        </div>
+                        <div class="work-content">
+                            <span class="work-type">音声AI / モデル改善</span>
+                            <h3>営業電話自動化アプリの音声生成モデル改良</h3>
+                            <p>営業電話自動化アプリ内の音声生成モデル改良に従事。STT、LLM、TTSモデルをプロダクトに合わせてチューニングし、OSSモデルのセルフホストとファインチューニング、モデル別の定量比較を実施しました。</p>
+                            <div class="tech-list" aria-label="使用技術">
+                                <span>Vercel</span>
+                                <span>Claude Code</span>
+                                <span>STT</span>
+                                <span>TTS</span>
+                                <span>LLM</span>
+                                <span>OSSモデル</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="work-item">
+                        <div class="work-meta">
+                            <time datetime="2026-06">2026/06 - 現在</time>
+                            <span>AI店員アプリ</span>
+                        </div>
+                        <div class="work-content">
+                            <span class="work-type">自社プロダクト / 営業中</span>
+                            <h3>小売店向けAI店員アプリの設計・開発</h3>
+                            <p>小売店の商品情報・位置情報を来店客へマンツーマンで案内するAI店員アプリを作成し、営業中。エンジニア単独で設計・開発を進めています。</p>
+                            <div class="tech-list" aria-label="使用技術">
+                                <span>VRM</span>
+                                <span>AI店員</span>
+                                <span>小売DX</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="founder" class="section section-banded" aria-labelledby="founder-heading">
+            <div class="section-shell founder-layout">
+                <div class="founder-title reveal">
+                    <p class="eyebrow">Founder</p>
+                    <h2 id="founder-heading">秋田 隼</h2>
+                    <p>個人事業主 / AJ</p>
+                </div>
+                <article class="founder-body reveal" itemscope itemtype="https://schema.org/Person">
+                    <p itemprop="description">
+                        AIエージェント統合基盤の自社開発と、Webアプリケーション開発・技術支援を提供します。
+                    </p>
+                    <p>
+                        相談内容を技術選定、実装範囲、運用上の論点に分解し、現実的な進め方へ落とし込みます。
+                    </p>
+                    <dl class="info-list" itemscope itemtype="https://schema.org/LocalBusiness">
+                        <div>
+                            <dt>屋号</dt>
+                            <dd itemprop="name">AJ</dd>
+                        </div>
+                        <div>
+                            <dt>所属</dt>
+                            <dd>東京大学情報理工学研究科コンピュータ科学専攻 相澤彰子研究室 配属</dd>
+                        </div>
+                        <div>
+                            <dt>事業内容</dt>
+                            <dd itemprop="description">AIエージェント基盤の自社開発、Webアプリ受託開発、SES</dd>
+                        </div>
+                        <div itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+                            <dt>所在地</dt>
+                            <dd>
+                                <span itemprop="addressRegion">東京都</span><span itemprop="addressLocality">新宿区</span><span itemprop="streetAddress">矢来町52-5 Herme神楽坂205号室</span>
+                            </dd>
+                        </div>
+                        <div>
+                            <dt>お問い合わせ</dt>
+                            <dd><a href="tel:+81-80-5614-7439" itemprop="telephone">080-5614-7439</a></dd>
+                        </div>
+                        <div>
+                            <dt>LinkedIn</dt>
+                            <dd><a href="https://www.linkedin.com/in/jun-akita-526356334/" target="_blank" rel="noopener">jun-akita-526356334</a></dd>
+                        </div>
+                    </dl>
                 </article>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- 創業者セクション -->
-    <section id="founder" class="py-20 bg-gray-50" aria-labelledby="founder-heading">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 id="founder-heading" class="text-4xl font-bold text-center mb-12 text-gray-800">
-                創業者
-                <div class="w-16 h-1 bg-blue-600 mx-auto mt-4 rounded"></div>
-            </h2>
-            <article class="space-y-6" itemscope itemtype="https://schema.org/Person">
-                <h3 class="text-3xl font-semibold text-blue-600 mb-4" itemprop="name">秋田 隼</h3>
-                <p class="text-lg text-gray-600 leading-relaxed">
-                    個人事業主として、お客様のビジネスをサポートするサービスを提供しております。
-                </p>
-                <p class="text-lg text-gray-600 leading-relaxed">
-                    経験と専門知識を活かし、お客様の成功を第一に考えたサービスを心がけております。
-                </p>
-                <dl class="mt-8 p-8 bg-white rounded-lg space-y-4" itemscope itemtype="https://schema.org/LocalBusiness">
-                    <div class="text-lg">
-                        <dt class="inline font-bold text-gray-800">屋号：</dt>
-                        <dd class="inline text-gray-600" itemprop="name">AJ</dd>
-                    </div>
-                    <div class="text-lg">
-                        <dt class="inline font-bold text-gray-800">事業内容：</dt>
-                        <dd class="inline text-gray-600" itemprop="description">
-                            <!-- TODO: 実コンテンツを記入 -->
-                            （準備中）
-                        </dd>
-                    </div>
-                    <div class="text-lg" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
-                        <dt class="inline font-bold text-gray-800">所在地：</dt>
-                        <dd class="inline text-gray-600">
-                            <span itemprop="addressRegion">東京都</span><span itemprop="addressLocality">新宿区</span><span itemprop="streetAddress">矢来町52-5 Herme神楽坂205号室</span>
-                        </dd>
-                    </div>
-                    <div class="text-lg">
-                        <dt class="inline font-bold text-gray-800">お問い合わせ：</dt>
-                        <dd class="inline text-gray-600">TEL: <a href="tel:+81-80-5614-7439" itemprop="telephone" class="hover:text-blue-600">080-5614-7439</a></dd>
-                    </div>
-                </dl>
-            </article>
-        </div>
-    </section>
-
-    <!-- FAQセクション (AIO: FAQPage schemaと1:1で対応) -->
-    <section id="faq" class="py-20 bg-white" aria-labelledby="faq-heading">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 id="faq-heading" class="text-4xl font-bold text-center mb-12 text-gray-800">
-                よくあるご質問
-                <div class="w-16 h-1 bg-blue-600 mx-auto mt-4 rounded"></div>
-            </h2>
-            <div class="space-y-4">
-                <details class="group bg-gray-50 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden">
-                    <summary class="cursor-pointer p-6 font-semibold text-lg text-gray-800 flex justify-between items-center">
-                        <span>受託開発はどのような技術スタックに対応していますか？</span>
-                        <span class="text-blue-600 group-open:rotate-45 transition-transform duration-300 text-2xl leading-none">+</span>
-                    </summary>
-                    <div class="px-6 pb-6 text-gray-600 leading-relaxed">
-                        <!-- TODO: 実コンテンツを記入 -->
-                        （準備中）対応可能な言語・フレームワーク・クラウド環境を後日掲載予定です。
-                    </div>
-                </details>
-                <details class="group bg-gray-50 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden">
-                    <summary class="cursor-pointer p-6 font-semibold text-lg text-gray-800 flex justify-between items-center">
-                        <span>見積もりや相談はどのように依頼できますか？</span>
-                        <span class="text-blue-600 group-open:rotate-45 transition-transform duration-300 text-2xl leading-none">+</span>
-                    </summary>
-                    <div class="px-6 pb-6 text-gray-600 leading-relaxed">
-                        本サイトのお問い合わせフォーム、または TEL <a href="tel:+81-80-5614-7439" class="text-blue-600 hover:underline">080-5614-7439</a> までご連絡ください。事業内容・規模に応じて個別にお見積もりいたします。
-                    </div>
-                </details>
-                <details class="group bg-gray-50 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden">
-                    <summary class="cursor-pointer p-6 font-semibold text-lg text-gray-800 flex justify-between items-center">
-                        <span>リモートでの稼働は可能ですか？</span>
-                        <span class="text-blue-600 group-open:rotate-45 transition-transform duration-300 text-2xl leading-none">+</span>
-                    </summary>
-                    <div class="px-6 pb-6 text-gray-600 leading-relaxed">
-                        <!-- TODO: 実コンテンツを記入 -->
-                        （準備中）リモート対応可否・常駐可否について後日詳細を掲載予定です。
-                    </div>
-                </details>
-                <details class="group bg-gray-50 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden">
-                    <summary class="cursor-pointer p-6 font-semibold text-lg text-gray-800 flex justify-between items-center">
-                        <span>AIエージェント開発の相談は可能ですか？</span>
-                        <span class="text-blue-600 group-open:rotate-45 transition-transform duration-300 text-2xl leading-none">+</span>
-                    </summary>
-                    <div class="px-6 pb-6 text-gray-600 leading-relaxed">
-                        可能です。自社で『エージェントゲートウェイ』を開発しており、複数のAIエージェントを統合・制御する設計・実装の知見をご提供できます。
-                    </div>
-                </details>
-                <details class="group bg-gray-50 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden">
-                    <summary class="cursor-pointer p-6 font-semibold text-lg text-gray-800 flex justify-between items-center">
-                        <span>対応エリアはどこですか？</span>
-                        <span class="text-blue-600 group-open:rotate-45 transition-transform duration-300 text-2xl leading-none">+</span>
-                    </summary>
-                    <div class="px-6 pb-6 text-gray-600 leading-relaxed">
-                        拠点は東京都新宿区ですが、日本全国を対象に対応可能です。海外案件の可否については個別にご相談ください。
-                    </div>
-                </details>
+        <section id="faq" class="section" aria-labelledby="faq-heading">
+            <div class="section-shell faq-shell">
+                <div class="section-heading reveal">
+                    <p class="eyebrow">FAQ</p>
+                    <h2 id="faq-heading">よくあるご質問</h2>
+                </div>
+                <div class="faq-list reveal">
+                    <details>
+                        <summary>
+                            <span>受託開発はどのような技術スタックに対応していますか？</span>
+                            <span class="summary-mark">+</span>
+                        </summary>
+                        <div class="faq-answer">
+                            （準備中）対応可能な言語・フレームワーク・クラウド環境を後日掲載予定です。
+                        </div>
+                    </details>
+                    <details>
+                        <summary>
+                            <span>見積もりや相談はどのように依頼できますか？</span>
+                            <span class="summary-mark">+</span>
+                        </summary>
+                        <div class="faq-answer">
+                            本サイトのお問い合わせフォーム、または TEL <a href="tel:+81-80-5614-7439">080-5614-7439</a> までご連絡ください。事業内容・規模に応じて個別にお見積もりいたします。
+                        </div>
+                    </details>
+                    <details>
+                        <summary>
+                            <span>リモートでの稼働は可能ですか？</span>
+                            <span class="summary-mark">+</span>
+                        </summary>
+                        <div class="faq-answer">
+                            （準備中）リモート対応可否・常駐可否について後日詳細を掲載予定です。
+                        </div>
+                    </details>
+                    <details>
+                        <summary>
+                            <span>AIエージェント開発の相談は可能ですか？</span>
+                            <span class="summary-mark">+</span>
+                        </summary>
+                        <div class="faq-answer">
+                            可能です。自社で『エージェントゲートウェイ』を開発しており、複数のAIエージェントを統合・制御する設計・実装の知見をご提供できます。
+                        </div>
+                    </details>
+                    <details>
+                        <summary>
+                            <span>対応エリアはどこですか？</span>
+                            <span class="summary-mark">+</span>
+                        </summary>
+                        <div class="faq-answer">
+                            拠点は東京都新宿区ですが、日本全国を対象に対応可能です。海外案件の可否については個別にご相談ください。
+                        </div>
+                    </details>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- お問い合わせセクション -->
-    <section id="contact" class="py-20 bg-gray-50" aria-labelledby="contact-heading">
-        <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 id="contact-heading" class="text-4xl font-bold text-center mb-12 text-gray-800">
-                お問い合わせ
-                <div class="w-16 h-1 bg-blue-600 mx-auto mt-4 rounded"></div>
-            </h2>
-            <form id="contactForm" class="bg-white p-8 rounded-xl shadow-md space-y-6">
-                <div>
-                    <label for="name" class="block text-sm font-semibold text-gray-700 mb-2">
-                        お名前 <span class="text-red-500">*</span>
-                    </label>
-                    <input type="text" id="name" name="name" required
-                        class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-blue-600 focus:outline-none transition-colors duration-200">
+        <section id="contact" class="section contact-section" aria-labelledby="contact-heading">
+            <div class="section-shell contact-layout">
+                <div class="contact-copy reveal">
+                    <p class="eyebrow">Contact</p>
+                    <h2 id="contact-heading">お問い合わせ</h2>
+                    <p>開発相談、技術支援、SES参画について、内容が固まっていない段階でも連絡できます。</p>
+                    <div class="contact-direct">
+                        <span>電話</span>
+                        <a href="tel:+81-80-5614-7439">080-5614-7439</a>
+                    </div>
                 </div>
-                <div>
-                    <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">
-                        メールアドレス <span class="text-red-500">*</span>
-                    </label>
-                    <input type="email" id="email" name="email" required
-                        class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-blue-600 focus:outline-none transition-colors duration-200">
-                </div>
-                <div>
-                    <label for="subject" class="block text-sm font-semibold text-gray-700 mb-2">
-                        件名
-                    </label>
-                    <input type="text" id="subject" name="subject"
-                        class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-blue-600 focus:outline-none transition-colors duration-200">
-                </div>
-                <div>
-                    <label for="message" class="block text-sm font-semibold text-gray-700 mb-2">
-                        お問い合わせ内容 <span class="text-red-500">*</span>
-                    </label>
-                    <textarea id="message" name="message" rows="5" required
-                        class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-blue-600 focus:outline-none transition-colors duration-200 resize-vertical"></textarea>
-                </div>
-                <button type="submit"
-                    class="w-full bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 hover:shadow-lg transition-all duration-300">
-                    送信
-                </button>
-            </form>
-        </div>
-    </section>
-
+                <form id="contactForm" class="contact-form reveal">
+                    <div class="form-field">
+                        <label for="name">お名前 <span>必須</span></label>
+                        <input type="text" id="name" name="name" required autocomplete="name">
+                    </div>
+                    <div class="form-field">
+                        <label for="email">メールアドレス <span>必須</span></label>
+                        <input type="email" id="email" name="email" required autocomplete="email">
+                    </div>
+                    <div class="form-field">
+                        <label for="subject">件名</label>
+                        <input type="text" id="subject" name="subject">
+                    </div>
+                    <div class="form-field">
+                        <label for="message">お問い合わせ内容 <span>必須</span></label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <input type="text" name="website" autocomplete="off" tabindex="-1" aria-hidden="true" hidden>
+                    <button type="submit" class="button button-submit">送信</button>
+                </form>
+            </div>
+        </section>
     </main>
 
-    <!-- footer -->
-    <footer class="bg-gray-800 text-white py-8" role="contentinfo">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm">
+    <footer class="site-footer" role="contentinfo">
+        <div class="section-shell footer-inner">
             <p>&copy; 2024 AJ. All rights reserved.</p>
-            <address class="not-italic mt-2 text-gray-400">
-                AJ｜東京都新宿区矢来町52-5 Herme神楽坂205号室｜TEL: <a href="tel:+81-80-5614-7439" class="hover:text-white">080-5614-7439</a>
+            <address>
+                AJ｜東京都新宿区矢来町52-5 Herme神楽坂205号室｜TEL: <a href="tel:+81-80-5614-7439">080-5614-7439</a>
             </address>
         </div>
     </footer>
@@ -528,4 +691,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-

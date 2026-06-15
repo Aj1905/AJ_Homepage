@@ -21,7 +21,20 @@
 
 ## 創業者プロフィール
 
-- [秋田 隼](https://aj-homepage.vercel.app/#founder): 個人事業主・創業者。AIエージェント開発、Webアプリケーション開発、システム設計に従事。
+- [秋田 隼](https://aj-homepage.vercel.app/#founder): 個人事業主・創業者。東京大学情報理工学研究科コンピュータ科学専攻 相澤彰子研究室 配属。AIエージェント開発、Webアプリケーション開発、システム設計、需要予測AI、音声AI、画像処理AIに従事。
+- [LinkedIn](https://www.linkedin.com/in/jun-akita-526356334/): 外部プロフィール。
+
+## 過去業務
+
+- 株式会社Stardy: 数学講師、数学・物理教材作成、Google Workspace / GAS / GCP / Pythonを使った従業員管理ツールと学生対応チャットBotの開発。
+- 個人開発: MQL4 / MQL5を用いたFX自動売買向けインジケータ、エキスパートアドバイザの作成。
+- 学生団体Nagare: 愛知県弥富市の金魚農家向けPR活動としてWordPressサイトを制作。
+- Outlier AI: 音声モデル、動画生成モデル向けデータアノテーション。
+- ALANSE株式会社: 飲食店向け需要予測AIモデルの設計、予測、顧客説明。LightGBM / polarsを使用。
+- 合同会社kamomemon: プロンプト共有プラットフォームアプリの設計、開発、営業。
+- 株式会社ARCRA: 真珠の傷判定AIソフト向けデータアノテーション。
+- nocall株式会社: 営業電話自動化アプリ内のSTT / LLM / TTSモデル改善、OSSモデルのセルフホストとファインチューニング。
+- AI店員アプリ: 小売店の商品情報・位置情報を来店客へ案内するAI店員アプリを設計・開発。
 
 ## FAQ
 
@@ -33,4 +46,4 @@
 
 ## Optional
 
-- [過去業務実績](https://aj-homepage.vercel.app/#past-work): 過去に対応した案件の概要（順次掲載）。
+- [過去業務実績](https://aj-homepage.vercel.app/#past-work): 教育、業務自動化、Web制作、需要予測、画像処理AI、音声AI、AI店員アプリに関する業務履歴。

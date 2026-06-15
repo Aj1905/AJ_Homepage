@@ -4,39 +4,34 @@ const mobileMenu = document.getElementById('mobileMenu');
 
 if (hamburger && mobileMenu) {
     hamburger.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-        // ハンバーガーアイコンのアニメーション
-        const spans = hamburger.querySelectorAll('span');
-        if (!mobileMenu.classList.contains('hidden')) {
-            spans[0].style.transform = 'rotate(45deg) translateY(8px)';
-            spans[1].style.opacity = '0';
-            spans[2].style.transform = 'rotate(-45deg) translateY(-8px)';
-        } else {
-            spans[0].style.transform = 'none';
-            spans[1].style.opacity = '1';
-            spans[2].style.transform = 'none';
-        }
+        const willOpen = mobileMenu.hidden;
+
+        mobileMenu.hidden = !willOpen;
+        hamburger.classList.toggle('is-open', willOpen);
+        hamburger.setAttribute('aria-expanded', String(willOpen));
+        document.body.classList.toggle('menu-open', willOpen);
     });
 
     // メニューリンククリック時にメニューを閉じる
     mobileMenu.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
-            mobileMenu.classList.add('hidden');
-            const spans = hamburger.querySelectorAll('span');
-            spans[0].style.transform = 'none';
-            spans[1].style.opacity = '1';
-            spans[2].style.transform = 'none';
+            mobileMenu.hidden = true;
+            hamburger.classList.remove('is-open');
+            hamburger.setAttribute('aria-expanded', 'false');
+            document.body.classList.remove('menu-open');
         });
     });
 }
 
 // スクロール時のナビゲーションバーのスタイル変更
 window.addEventListener('scroll', () => {
-    const navbar = document.querySelector('header');
+    const navbar = document.querySelector('.site-header');
+    if (!navbar) return;
+
     if (window.scrollY > 50) {
-        navbar.classList.add('shadow-lg');
+        navbar.classList.add('is-scrolled');
     } else {
-        navbar.classList.remove('shadow-lg');
+        navbar.classList.remove('is-scrolled');
     }
 });
 
@@ -44,48 +39,55 @@ window.addEventListener('scroll', () => {
 const contactForm = document.getElementById('contactForm');
 
 if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+    const submitButton = contactForm.querySelector('button[type="submit"]');
+    const contactStatus = document.createElement('p');
+    contactStatus.className = 'form-status';
+    contactStatus.setAttribute('role', 'status');
+    contactStatus.setAttribute('aria-live', 'polite');
+    submitButton.insertAdjacentElement('afterend', contactStatus);
+
+    const setContactStatus = (message, type = '') => {
+        contactStatus.textContent = message;
+        contactStatus.className = type ? `form-status is-${type}` : 'form-status';
+    };
+
+    contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        
-        // フォームデータの取得
-        const formData = {
-            name: document.getElementById('name').value,
-            email: document.getElementById('email').value,
-            subject: document.getElementById('subject').value,
-            message: document.getElementById('message').value
-        };
-        
-        // ここで実際の送信処理を実装してください
-        // 例: メール送信APIの呼び出し、フォーム送信サービスの使用など
-        
-        // デモ用のアラート
-        alert('お問い合わせありがとうございます。\n送信機能は実装が必要です。\n\n送信内容:\n' + 
-              'お名前: ' + formData.name + '\n' +
-              'メール: ' + formData.email + '\n' +
-              '件名: ' + formData.subject + '\n' +
-              '内容: ' + formData.message);
-        
-        // フォームをリセット
-        contactForm.reset();
-    });
-}
 
-// スクロールアニメーション
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
+        if (!contactForm.reportValidity()) {
+            return;
+        }
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('animate-fade-in');
+        const formData = new FormData(contactForm);
+        const payload = Object.fromEntries(formData.entries());
+
+        submitButton.disabled = true;
+        submitButton.textContent = '送信中...';
+        setContactStatus('送信しています。');
+
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            });
+
+            const result = await response.json().catch(() => ({}));
+
+            if (!response.ok) {
+                throw new Error(result.message || '送信に失敗しました。時間をおいて再度お試しください。');
+            }
+
+            contactForm.reset();
+            setContactStatus('送信しました。内容を確認して返信します。', 'success');
+        } catch (error) {
+            setContactStatus(error.message, 'error');
+        } finally {
+            submitButton.disabled = false;
+            submitButton.textContent = '送信';
         }
     });
-}, observerOptions);
-
-// アニメーション対象の要素を監視
-document.querySelectorAll('section > div > div').forEach(el => {
-    observer.observe(el);
-});
-
+}

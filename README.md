@@ -147,13 +147,13 @@ Tailwind CSSのユーティリティクラスを変更：
 
 ### お問い合わせフォームの実装
 
-`script.js`の`contactForm`イベントリスナー内で、実際の送信処理を実装してください。
+フォーム送信はCloudflare Pages Functionsの`/api/contact`で受け取り、Resend APIから`jun.akita57@gmail.com`へ送信します。
 
-**推奨サービス：**
-- [Formspree](https://formspree.io/) - 簡単なフォーム送信サービス
-- [EmailJS](https://www.emailjs.com/) - メール送信API
-- [Netlify Forms](https://docs.netlify.com/forms/setup/) - Netlifyを使用している場合
-- バックエンドAPIへの送信
+Cloudflare Pagesの環境変数に以下を設定してください。
+
+- `RESEND_API_KEY`: ResendのAPIキー
+- `RESEND_FROM_EMAIL`: Resendで認証済みの送信元メールアドレス（例: `AJ <contact@example.com>`）
+- `CONTACT_TO_EMAIL`: 宛先を変更する場合のみ設定（未設定時は`jun.akita57@gmail.com`）
 
 ## 🔄 更新・デプロイの流れ
 
@@ -198,4 +198,3 @@ git push
 ---
 
 **更新日**: 2024年
-
