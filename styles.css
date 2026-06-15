@@ -107,28 +107,16 @@ textarea {
 .brand {
     display: inline-flex;
     align-items: center;
-    gap: 12px;
     color: var(--ink-strong);
     text-decoration: none;
     min-width: 220px;
 }
 
-.brand-mark {
-    display: grid;
-    place-items: center;
-    width: 42px;
-    height: 42px;
-    color: var(--paper);
-    background: var(--ink-strong);
-    border-radius: 8px;
-    font-size: 1.05rem;
-    font-weight: 800;
-}
-
-.brand-text {
-    font-size: 0.82rem;
-    color: var(--muted);
-    white-space: nowrap;
+.brand-logo {
+    display: block;
+    width: 210px;
+    height: auto;
+    max-width: 100%;
 }
 
 .nav-links {
@@ -419,6 +407,70 @@ textarea {
     background: var(--paper);
 }
 
+.philosophy-layout {
+    display: grid;
+    grid-template-columns: 330px 1fr;
+    gap: 56px;
+    align-items: start;
+}
+
+.philosophy-title {
+    padding-top: 6px;
+}
+
+.philosophy-statement {
+    margin: 0;
+    color: var(--ink-strong);
+    font-size: 1.7rem;
+    line-height: 1.5;
+    font-weight: 850;
+}
+
+.philosophy-body > p:not(.philosophy-statement) {
+    margin: 18px 0 0;
+    color: var(--ink);
+    font-size: 1.06rem;
+}
+
+.philosophy-values {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin: 34px 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.philosophy-values li {
+    padding: 22px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-top: 4px solid var(--accent);
+    border-radius: 8px;
+    box-shadow: var(--shadow-light);
+}
+
+.philosophy-values li:nth-child(2) {
+    border-top-color: var(--rust);
+}
+
+.philosophy-values li:nth-child(3) {
+    border-top-color: var(--gold);
+}
+
+.philosophy-values strong {
+    display: block;
+    color: var(--ink-strong);
+    font-size: 1.08rem;
+}
+
+.philosophy-values p {
+    margin: 10px 0 0;
+    color: var(--muted);
+    font-size: 0.94rem;
+    line-height: 1.6;
+}
+
 .section-banded {
     background: rgba(234, 240, 237, 0.72);
     border-block: 1px solid var(--line);
@@ -667,6 +719,25 @@ textarea {
 
 .founder-title {
     padding-top: 6px;
+}
+
+.founder-photo {
+    width: min(100%, 330px);
+    margin-top: 26px;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    background: var(--surface-strong);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    box-shadow: var(--shadow-light);
+}
+
+.founder-photo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
 }
 
 .founder-body {
@@ -937,6 +1008,7 @@ textarea {
     }
 
     .hero-grid,
+    .philosophy-layout,
     .work-layout,
     .founder-layout,
     .contact-layout {
@@ -948,7 +1020,8 @@ textarea {
         font-size: 4.6rem;
     }
 
-    .service-list {
+    .service-list,
+    .philosophy-values {
         grid-template-columns: 1fr;
     }
 
@@ -979,13 +1052,8 @@ textarea {
         width: calc(100% - 28px);
     }
 
-    .brand-text {
-        display: none;
-    }
-
-    .brand-mark {
-        width: 38px;
-        height: 38px;
+    .brand-logo {
+        width: 156px;
     }
 
     .hero {
