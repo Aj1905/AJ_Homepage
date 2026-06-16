@@ -48,7 +48,7 @@
     <meta name="twitter:image" content="https://aj-homepage.vercel.app/ogp.png">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/assets/aj-logo.svg">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23111827'/%3E%3Ctext x='50' y='50' font-family='-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif' font-size='44' font-weight='700' fill='%23ffffff' text-anchor='middle' dominant-baseline='central'%3EAJ%3C/text%3E%3C/svg%3E">
 
     <!-- AI/LLM向けメタヒント -->
     <link rel="alternate" type="text/markdown" title="AJ - LLM向け概要 (llms.txt)" href="/llms.txt">
@@ -63,7 +63,7 @@
       "name": "AJ",
       "alternateName": "AJ（屋号）",
       "url": "https://aj-homepage.vercel.app/",
-      "logo": "https://aj-homepage.vercel.app/assets/aj-logo.svg",
+      "logo": "https://aj-homepage.vercel.app/ogp.png",
       "image": "https://aj-homepage.vercel.app/ogp.png",
       "description": "AIエージェント統合基盤（エージェントゲートウェイ）の自社開発、Webアプリの受託開発、エンジニアリングSESを提供する個人事業主。",
       "slogan": "AIの次の時代を",
@@ -247,7 +247,8 @@
         <div class="site-shell">
             <nav class="site-nav" aria-label="グローバルナビゲーション">
                 <a href="#mv" class="brand" aria-label="AJ ホームへ">
-                    <img class="brand-logo" src="assets/aj-logo.svg" alt="AJ" width="42" height="42">
+                    <span class="brand-mark">AJ</span>
+                    <span class="brand-text">AI Agent / Web / SES</span>
                 </a>
                 <ul class="nav-links">
                     <li><a href="#services">事業内容</a></li>
@@ -302,6 +303,36 @@
                         </div>
                     </dl>
                 </div>
+
+                <aside class="hero-panel reveal" aria-label="AJの提供領域">
+                    <div class="panel-head">
+                        <span>AJ Scope</span>
+                        <span>Active</span>
+                    </div>
+                    <div class="scope-list">
+                        <div class="scope-row">
+                            <span class="scope-index">01</span>
+                            <div>
+                                <strong>Agent Gateway</strong>
+                                <p>。</p>
+                            </div>
+                        </div>
+                        <div class="scope-row">
+                            <span class="scope-index">02</span>
+                            <div>
+                                <strong>Contract Development</strong>
+                                <p>Webアプリ、業務システムの設計・実装・運用改善。</p>
+                            </div>
+                        </div>
+                        <div class="scope-row">
+                            <span class="scope-index">03</span>
+                            <div>
+                                <strong>Engineering Support</strong>
+                                <p>開発チームへの参画、技術支援、実装速度の補強。</p>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
             </div>
         </section>
 
@@ -310,7 +341,7 @@
                 <div class="section-heading reveal">
                     <p class="eyebrow">Services</p>
                     <h2 id="services-heading">事業内容</h2>
-                    <p>派手な約束ではなく、提供範囲を明確に切り分けています。</p>
+                    <p>>技術で世界を豊かにする。</p>
                 </div>
                 <div class="service-list">
                     <article class="service-item reveal">
