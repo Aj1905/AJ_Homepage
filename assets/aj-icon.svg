@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 80 80" role="img" aria-labelledby="title desc">
+  <title id="title">AJ icon</title>
+  <desc id="desc">AJ mark without screenshot background.</desc>
+  <defs>
+    <linearGradient id="markAccent" x1="10" y1="8" x2="70" y2="72" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#126050"/>
+      <stop offset="1" stop-color="#b5842f"/>
+    </linearGradient>
+  </defs>
+  <rect width="80" height="80" rx="16" fill="#111714"/>
+  <path d="M14 60L38 16H49L27 60H14Z" fill="url(#markAccent)"/>
+  <path d="M45 16H60V48C60 58.5 53.2 65 42.4 65C35.8 65 30.7 62.7 27.2 58.6L36.4 50.4C37.9 52.5 39.7 53.7 42.3 53.7C45.2 53.7 47.1 51.8 47.1 48V28.3H45V16Z" fill="#ffffff"/>
+</svg>
