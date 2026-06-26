@@ -154,6 +154,7 @@ Cloudflare Pagesの環境変数に以下を設定してください。
 - `RESEND_API_KEY`: ResendのAPIキー
 - `RESEND_FROM_EMAIL`: Resendで認証済みの送信元メールアドレス（例: `AJ <contact@example.com>`）
 - `CONTACT_TO_EMAIL`: 宛先を変更する場合のみ設定（未設定時は`jun.akita57@gmail.com`）
+- `ALLOWED_ORIGINS`: フォーム設置元とAPIのオリジンが異なる場合のみ、許可するオリジンをカンマ区切りで設定
 
 ## 🔄 更新・デプロイの流れ
 

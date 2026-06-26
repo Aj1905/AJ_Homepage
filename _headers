@@ -1,0 +1,7 @@
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+  Cross-Origin-Opener-Policy: same-origin
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; connect-src 'self'; img-src 'self' data:; font-src 'self'; style-src 'self'; script-src 'self' 'sha256-6aVYVSbOdH+AJDDgrIiLsouJKjBFoigTyEhdLNALd5s=' 'sha256-y/2q/Gxk8zeMIukU3rVbErWCPTPz6+4ua3l2VVzU7Qs=' 'sha256-md/EHGYHw+ycahC6KZ7hvYj7wSCyFGYgP3PZQzODeag=' 'sha256-b1unUGXLMd67i6ckZZsgMXIzADHFBH47O467U5fxskI=' 'sha256-DMYeGqKdi2np97tJGyc6M/cjQgDwbcuHpwr4krRCYl4='; upgrade-insecure-requests

@@ -1,24 +1,41 @@
 const CONTACT_TO_EMAIL = 'jun.akita57@gmail.com';
+const MAX_BODY_BYTES = 12000;
+const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
+const RATE_LIMIT_MAX_REQUESTS = 5;
 const MAX_LENGTHS = {
     name: 120,
     email: 254,
     subject: 160,
     message: 4000
 };
+const JSON_HEADERS = {
+    'Content-Type': 'application/json; charset=utf-8',
+    'Cache-Control': 'no-store',
+    'X-Content-Type-Options': 'nosniff',
+    'Referrer-Policy': 'no-referrer'
+};
+const rateLimitStore = new Map();
 
-const jsonResponse = (body, status = 200) => new Response(JSON.stringify(body), {
+class BodyTooLargeError extends Error {}
+
+const jsonResponse = (body, status = 200, headers = {}) => new Response(JSON.stringify(body), {
     status,
     headers: {
-        'Content-Type': 'application/json; charset=utf-8'
+        ...JSON_HEADERS,
+        ...headers
     }
 });
 
-const normalizeField = (value, maxLength) => {
+const normalizeField = (value, maxLength, stripControls = false) => {
     if (typeof value !== 'string') {
         return '';
     }
 
-    return value.trim().slice(0, maxLength);
+    const normalized = stripControls
+        ? value.replace(/[\u0000-\u001F\u007F]+/g, ' ')
+        : value;
+
+    return normalized.trim().slice(0, maxLength);
 };
 
 const escapeHtml = (value) => value
@@ -28,19 +45,179 @@ const escapeHtml = (value) => value
     .replaceAll('"', '&quot;')
     .replaceAll("'", '&#39;');
 
-const isEmail = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+const isEmail = (value) => /^[^\s@<>"]+@[^\s@<>"]+\.[^\s@<>"]+$/.test(value);
 
-export async function onRequestPost({ request, env }) {
+const isJsonRequest = (request) => {
+    const contentType = request.headers.get('content-type') || '';
+    return /^application\/json(?:\s*;|$)/i.test(contentType);
+};
+
+const normalizeOrigin = (value) => {
+    try {
+        return new URL(value).origin;
+    } catch {
+        return '';
+    }
+};
+
+const getAllowedOrigins = (request, env) => {
+    const allowedOrigins = new Set([new URL(request.url).origin]);
+
+    String(env.ALLOWED_ORIGINS || '')
+        .split(',')
+        .map((origin) => origin.trim())
+        .filter(Boolean)
+        .map(normalizeOrigin)
+        .filter(Boolean)
+        .forEach((origin) => allowedOrigins.add(origin));
+
+    return allowedOrigins;
+};
+
+const isAllowedRequestOrigin = (request, env) => {
+    const allowedOrigins = getAllowedOrigins(request, env);
+    const origin = request.headers.get('origin');
+
+    if (origin) {
+        return allowedOrigins.has(normalizeOrigin(origin));
+    }
+
+    const referer = request.headers.get('referer');
+
+    if (referer) {
+        return allowedOrigins.has(normalizeOrigin(referer));
+    }
+
+    return false;
+};
+
+const getClientId = (request) => {
+    const forwardedFor = request.headers.get('x-forwarded-for') || '';
+    const forwardedIp = forwardedFor.split(',')[0].trim();
+
+    return request.headers.get('cf-connecting-ip') || forwardedIp || 'unknown';
+};
+
+const pruneRateLimitStore = (now) => {
+    for (const [clientId, entry] of rateLimitStore) {
+        if (entry.resetAt <= now) {
+            rateLimitStore.delete(clientId);
+        }
+    }
+};
+
+const checkRateLimit = (request) => {
+    const now = Date.now();
+
+    if (rateLimitStore.size > 1000) {
+        pruneRateLimitStore(now);
+    }
+
+    const clientId = getClientId(request);
+    const entry = rateLimitStore.get(clientId);
+
+    if (!entry || entry.resetAt <= now) {
+        rateLimitStore.set(clientId, {
+            count: 1,
+            resetAt: now + RATE_LIMIT_WINDOW_MS
+        });
+        return { allowed: true };
+    }
+
+    entry.count += 1;
+
+    if (entry.count > RATE_LIMIT_MAX_REQUESTS) {
+        return {
+            allowed: false,
+            retryAfter: Math.ceil((entry.resetAt - now) / 1000)
+        };
+    }
+
+    return { allowed: true };
+};
+
+const readRequestText = async (request) => {
     const contentLength = Number(request.headers.get('content-length') || 0);
 
-    if (contentLength > 12000) {
-        return jsonResponse({ message: '送信内容が長すぎます。内容を短くしてください。' }, 413);
+    if (Number.isFinite(contentLength) && contentLength > MAX_BODY_BYTES) {
+        throw new BodyTooLargeError();
+    }
+
+    if (!request.body) {
+        return '';
+    }
+
+    const reader = request.body.getReader();
+    const chunks = [];
+    let receivedBytes = 0;
+
+    while (true) {
+        const { done, value } = await reader.read();
+
+        if (done) {
+            break;
+        }
+
+        receivedBytes += value.byteLength;
+
+        if (receivedBytes > MAX_BODY_BYTES) {
+            await reader.cancel();
+            throw new BodyTooLargeError();
+        }
+
+        chunks.push(value);
+    }
+
+    const bodyBytes = new Uint8Array(receivedBytes);
+    let offset = 0;
+
+    for (const chunk of chunks) {
+        bodyBytes.set(chunk, offset);
+        offset += chunk.byteLength;
+    }
+
+    return new TextDecoder().decode(bodyBytes);
+};
+
+export async function onRequestPost({ request, env = {} }) {
+    if (!isAllowedRequestOrigin(request, env)) {
+        return jsonResponse({ message: '許可されていない送信元です。' }, 403);
+    }
+
+    if (!isJsonRequest(request)) {
+        return jsonResponse({ message: 'Content-Typeはapplication/jsonを指定してください。' }, 415);
+    }
+
+    const rateLimit = checkRateLimit(request);
+
+    if (!rateLimit.allowed) {
+        return jsonResponse(
+            { message: '短時間に送信が集中しています。時間をおいて再度お試しください。' },
+            429,
+            { 'Retry-After': String(rateLimit.retryAfter) }
+        );
+    }
+
+    let bodyText;
+
+    try {
+        bodyText = await readRequestText(request);
+    } catch (error) {
+        if (error instanceof BodyTooLargeError) {
+            return jsonResponse({ message: '送信内容が長すぎます。内容を短くしてください。' }, 413);
+        }
+
+        return jsonResponse({ message: '送信内容を読み取れませんでした。' }, 400);
+    }
+
+    if (!bodyText) {
+        return jsonResponse({ message: '送信内容を読み取れませんでした。' }, 400);
     }
 
     let body;
 
     try {
-        body = await request.json();
+        body = JSON.parse(bodyText);
     } catch {
         return jsonResponse({ message: '送信内容を読み取れませんでした。' }, 400);
     }
@@ -53,9 +230,9 @@ export async function onRequestPost({ request, env }) {
         return jsonResponse({ message: '送信しました。' });
     }
 
-    const name = normalizeField(body.name, MAX_LENGTHS.name);
-    const email = normalizeField(body.email, MAX_LENGTHS.email);
-    const subject = normalizeField(body.subject, MAX_LENGTHS.subject);
+    const name = normalizeField(body.name, MAX_LENGTHS.name, true);
+    const email = normalizeField(body.email, MAX_LENGTHS.email, true);
+    const subject = normalizeField(body.subject, MAX_LENGTHS.subject, true);
     const message = normalizeField(body.message, MAX_LENGTHS.message);
 
     if (!name || !email || !message) {
@@ -99,25 +276,31 @@ export async function onRequestPost({ request, env }) {
         <p style="white-space: pre-wrap;">${escapeHtml(message)}</p>
     `;
 
-    const resendResponse = await fetch('https://api.resend.com/emails', {
-        method: 'POST',
-        headers: {
-            'Authorization': `Bearer ${env.RESEND_API_KEY}`,
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            from: env.RESEND_FROM_EMAIL,
-            to: [env.CONTACT_TO_EMAIL || CONTACT_TO_EMAIL],
-            reply_to: email,
-            subject: mailSubject,
-            text,
-            html
-        })
-    });
+    let resendResponse;
+
+    try {
+        resendResponse = await fetch('https://api.resend.com/emails', {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${env.RESEND_API_KEY}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                from: env.RESEND_FROM_EMAIL,
+                to: [env.CONTACT_TO_EMAIL || CONTACT_TO_EMAIL],
+                reply_to: email,
+                subject: mailSubject,
+                text,
+                html
+            })
+        });
+    } catch {
+        console.error('Resend email API request failed');
+        return jsonResponse({ message: 'メール送信に失敗しました。時間をおいて再度お試しください。' }, 502);
+    }
 
     if (!resendResponse.ok) {
-        const errorText = await resendResponse.text();
-        console.error('Resend email API failed', resendResponse.status, errorText);
+        console.error('Resend email API failed', resendResponse.status);
         return jsonResponse({ message: 'メール送信に失敗しました。時間をおいて再度お試しください。' }, 502);
     }
 
@@ -125,5 +308,5 @@ export async function onRequestPost({ request, env }) {
 }
 
 export function onRequest() {
-    return jsonResponse({ message: 'Method Not Allowed' }, 405);
+    return jsonResponse({ message: 'Method Not Allowed' }, 405, { Allow: 'POST' });
 }
