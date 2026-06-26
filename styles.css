@@ -489,8 +489,7 @@ textarea {
     margin-top: 22px;
 }
 
-.work-profile-links a,
-.work-reference {
+.work-profile-links a {
     display: inline-flex;
     align-items: center;
     min-height: 36px;
@@ -498,9 +497,6 @@ textarea {
     text-decoration: none;
     font-size: 0.92rem;
     font-weight: 850;
-}
-
-.work-profile-links a {
     padding: 0 12px;
     background: var(--surface);
     border: 1px solid var(--line);
@@ -508,9 +504,7 @@ textarea {
 }
 
 .work-profile-links a:hover,
-.work-profile-links a:focus-visible,
-.work-reference:hover,
-.work-reference:focus-visible {
+.work-profile-links a:focus-visible {
     color: var(--rust);
 }
 
@@ -618,14 +612,6 @@ textarea {
     border-radius: 5px;
     font-size: 0.8rem;
     font-weight: 760;
-}
-
-.work-reference {
-    margin-top: 14px;
-}
-
-.work-reference + .work-reference {
-    margin-left: 14px;
 }
 
 .info-list div {
