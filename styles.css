@@ -153,21 +153,6 @@ textarea {
     background: rgba(18, 96, 80, 0.08);
 }
 
-.nav-call {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 40px;
-    padding: 0 14px;
-    color: var(--paper);
-    background: var(--accent-dark);
-    border: 1px solid var(--accent-dark);
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: 750;
-    white-space: nowrap;
-}
-
 .menu-button {
     display: none;
     width: 44px;
@@ -933,8 +918,7 @@ textarea {
         width: min(100% - 32px, 760px);
     }
 
-    .nav-links,
-    .nav-call {
+    .nav-links {
         display: none;
     }
 
