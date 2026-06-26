@@ -191,9 +191,9 @@ git push
 - GitHub: https://github.com/Aj1905/AJ_Homepage
 - Cloudflare Pages: （デプロイ後にURLが発行されます）
 
-## 📞 お問い合わせ
+## お問い合わせ
 
-- TEL: 080-5614-7439
+- Email: jun.akita57@gmail.com
 
 ---
 

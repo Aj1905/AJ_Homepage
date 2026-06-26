@@ -639,6 +639,10 @@ textarea {
     margin-top: 14px;
 }
 
+.work-reference + .work-reference {
+    margin-left: 14px;
+}
+
 .info-list div {
     display: grid;
     grid-template-columns: 120px 1fr;
@@ -662,7 +666,7 @@ textarea {
 
 .founder-photo {
     width: min(100%, 330px);
-    margin-top: 26px;
+    margin: 26px 0 0;
     aspect-ratio: 4 / 5;
     overflow: hidden;
     background: var(--surface-strong);
@@ -1040,7 +1044,7 @@ textarea {
 
     .hero-facts a {
         font-size: 0.76rem;
-        white-space: nowrap;
+        overflow-wrap: anywhere;
     }
 
     .section {
