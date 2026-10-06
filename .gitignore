@@ -1,3 +1,20 @@
+# .gitignore — 3 節構成 (再現可能 / 秘密情報 / 端末固有)。ここに書いたものは端末間で同期されない。
+# 大きいファイルは除外しない。data/ に置き、必要になった時点で `git lfs track "data/**"` で追跡する。
+
+# ---- 1. 再現可能: コマンドで作り直せるもの。再現手順は README に書く ----
+# Vercel / Cloudflare の接続情報 (`vercel link` / `wrangler` で作り直せる)
 .vercel
 .wrangler/
+# 生成物
 qr-output/
+
+# ---- 2. 秘密情報: git に入れない。値は 1Password に置き、参照だけ .env.tpl に書く ----
+.env
+.env.*
+!.env.tpl
+!.env.example
+!.env.*.example
+
+# ---- 3. 端末固有: OS・エディタが作る付随ファイル ----
+# 注: .DS_Store は既に追跡されている。外すには `git rm --cached .DS_Store`
+.DS_Store
